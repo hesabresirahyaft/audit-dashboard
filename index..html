@@ -1,0 +1,1038 @@
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>سیستم حرفه‌ای مدیریت عملیات شرکت حسابرسی</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,'Segoe UI',sans-serif;background:#f3f6fa;color:#172033}button,input,select,textarea{font:inherit}header{background:linear-gradient(135deg,#101827,#263a61);color:#fff;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:15px;position:sticky;top:0;z-index:20;box-shadow:0 3px 14px #0002}header h1{font-size:20px;margin:0}.wrap{max-width:1550px;margin:auto;padding:18px}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}.tabs button,.btn{border:0;border-radius:10px;padding:9px 13px;cursor:pointer;background:#fff;box-shadow:0 2px 8px #0001}.tabs button.active,.primary{background:#2563eb;color:#fff}.danger{background:#dc2626!important;color:#fff}.success{background:#16a34a!important;color:#fff}.warn{background:#f59e0b!important;color:#fff}.cards{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-bottom:16px}.card{background:#fff;padding:15px;border-radius:14px;box-shadow:0 3px 12px #00000010}.card span{color:#667085;font-size:12px}.card b{font-size:24px;display:block;margin-top:7px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:#fff;border-radius:14px;padding:17px;margin-bottom:16px;box-shadow:0 3px 12px #00000010}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toolbar input{min-width:220px;flex:1}.input,.toolbar input,select,textarea{border:1px solid #d5dbe5;border-radius:9px;padding:9px;background:#fff}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:1100px}th,td{padding:9px;border-bottom:1px solid #e7ebf0;text-align:right;vertical-align:top}th{background:#f6f8fb;position:sticky;top:0}.badge{padding:4px 8px;border-radius:20px;font-size:12px;background:#e8eefc;display:inline-block}.late{background:#fee2e2;color:#991b1b}.done{background:#dcfce7;color:#166534}.partial{background:#fef3c7;color:#92400e}.muted{color:#667085;font-size:12px}.empty{text-align:center;padding:30px;color:#6b7280}.modal{display:none;position:fixed;inset:0;background:#0007;align-items:center;justify-content:center;z-index:50}.modal.show{display:flex}.box{background:#fff;border-radius:15px;padding:20px;width:min(1000px,94vw);max-height:92vh;overflow:auto}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.actions{display:flex;gap:8px;justify-content:flex-start;margin-top:15px}.progress{height:9px;background:#e9edf3;border-radius:20px;overflow:hidden;min-width:100px}.progress i{display:block;height:100%;background:#2563eb}.donut{width:210px;height:210px;border-radius:50%;margin:8px auto;position:relative;background:conic-gradient(#16a34a 0 25%,#f59e0b 25% 50%,#ef4444 50% 75%,#64748b 75% 100%)}.donut:after{content:'';position:absolute;inset:42px;background:#fff;border-radius:50%}.legend{display:grid;grid-template-columns:1fr 1fr;gap:7px;font-size:13px}.legend span{display:flex;align-items:center;gap:7px}.dot{width:10px;height:10px;border-radius:50%;display:inline-block}.kpi{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee}.mini{font-size:12px}.notice{padding:11px;border-radius:10px;background:#f8fafc;margin:7px 0}.dangerText{color:#b91c1c}.printOnly{display:none}@media(max-width:1100px){.cards{grid-template-columns:repeat(4,1fr)}.grid2{grid-template-columns:1fr}}@media(max-width:750px){.cards{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr 1fr}}@media(max-width:550px){.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}}
+@media print{header,.tabs,.toolbar,.actions,button{display:none!important}.wrap{max-width:none;padding:0}.panel{box-shadow:none;border:1px solid #ddd}.printOnly{display:block}}
+
+.menuBtn{border:0;background:#fff;color:#172033;width:44px;height:44px;border-radius:12px;font-size:25px;cursor:pointer;box-shadow:0 2px 10px #0002;line-height:1}.drawer{position:fixed;top:0;right:-330px;width:310px;height:100vh;background:#fff;z-index:100;box-shadow:-8px 0 30px #0003;transition:right .25s;padding:22px;overflow:auto}.drawer.open{right:0}.drawerHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.drawerHead h3{margin:0}.drawer button.navItem{width:100%;text-align:right;border:0;background:transparent;padding:13px 14px;border-radius:10px;margin:3px 0;cursor:pointer;font-weight:600}.drawer button.navItem:hover,.drawer button.navItem.active{background:#eef4ff;color:#2563eb}.drawerClose{border:0;background:#f1f3f6;border-radius:9px;width:36px;height:36px;cursor:pointer;font-size:20px}.drawerOverlay{position:fixed;inset:0;background:#0006;z-index:90;display:none}.drawerOverlay.show{display:block}.menuGroup{border-top:1px solid #edf0f4;margin-top:14px;padding-top:14px}.notesGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.noteCard{background:#fff;border:1px solid #e6eaf0;border-radius:14px;padding:15px;box-shadow:0 3px 12px #0000000d}.noteCard.pinned{border-color:#f59e0b}.noteBody{color:#475467;line-height:1.9;max-height:170px;overflow:hidden;margin-top:8px}.noteMeta{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.editor{min-height:240px;border:1px solid #d5dbe5;border-radius:10px;padding:12px;background:#fff;outline:none;line-height:2}.editor:focus{border-color:#2563eb;box-shadow:0 0 0 3px #2563eb18}.editorTools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.editorTools button{border:1px solid #d5dbe5;background:#fff;border-radius:8px;padding:7px 10px;cursor:pointer}.full{grid-column:1/-1}@media(max-width:900px){.notesGrid{grid-template-columns:1fr}.drawer{width:290px}}@media print{.menuBtn,.drawer,.drawerOverlay{display:none!important}}
+<style>.aiPanel{max-width:1100px}.aiChat{height:430px;overflow:auto;background:#f7f9fc;border:1px solid #e3e8ef;border-radius:14px;padding:16px;margin-top:14px}.aiMsg{padding:11px 14px;border-radius:12px;margin:8px 0;line-height:1.9;white-space:pre-wrap}.aiMsg.user{background:#e8f0fe;margin-right:12%;}.aiMsg.bot{background:#fff;border:1px solid #e7ebf0;margin-left:12%}.aiQuick{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.aiInputRow{display:flex;gap:8px;align-items:flex-end}.aiInputRow textarea{resize:vertical;flex:1}@media(max-width:700px){.aiInputRow{flex-direction:column}.aiInputRow .btn{width:100%}}
+/* فقط استایل هشدار هوشمند */
+.smartAlerts{margin:0 0 18px;background:var(--panel,#fff);border:1px solid #e5e7eb;border-radius:16px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.smartAlerts h3{margin:0;font-size:18px}.smartAlertStats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.smartAlertStat{padding:7px 12px;border-radius:10px;font-size:13px;font-weight:700}.smartAlertCritical{background:#fee2e2;color:#991b1b}.smartAlertWarn{background:#fef3c7;color:#92400e}.smartAlertInfo{background:#dbeafe;color:#1e40af}.smartAlertFilters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.smartAlertFilters button{border:1px solid #d1d5db;background:#fff;border-radius:9px;padding:6px 10px;cursor:pointer}.smartAlertFilters button.active{background:#111827;color:#fff}.smartAlertItem{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:11px;margin:7px 0;border-right:5px solid}.smartAlertItem.critical{background:#fff1f2;border-color:#dc2626}.smartAlertItem.warn{background:#fffbeb;border-color:#f59e0b}.smartAlertItem.info{background:#eff6ff;border-color:#3b82f6}.smartAlertText{flex:1}.smartAlertBtn{border:0;border-radius:8px;padding:7px 10px;background:#111827;color:#fff;cursor:pointer;white-space:nowrap}.smartAlertEmpty{padding:14px;text-align:center;color:#6b7280}
+
+/* ===== سیستم نسخه‌بندی و بازیابی ===== */
+.recoveryPanel{margin:18px 0;background:var(--panel,#fff);border:1px solid #e5e7eb;border-radius:16px;padding:18px;box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.recoveryHead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.recoveryHead h3{margin:0;font-size:18px}.recoveryActions{display:flex;gap:8px;flex-wrap:wrap}.recoveryActions button{border:1px solid #d1d5db;background:#fff;border-radius:9px;padding:8px 12px;cursor:pointer}.recoveryActions .primary{background:#111827;color:#fff;border-color:#111827}.recoveryList{margin-top:12px}.recoveryItem{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border:1px solid #e5e7eb;border-radius:11px;margin:7px 0}.recoveryMeta{flex:1}.recoveryMeta b{display:block}.recoveryMeta small{color:#6b7280}.recoveryItem button{border:1px solid #d1d5db;background:#fff;border-radius:8px;padding:6px 9px;cursor:pointer}.recoveryEmpty{padding:14px;text-align:center;color:#6b7280}.recoveryBadge{display:inline-block;padding:3px 7px;border-radius:8px;background:#eef2ff;margin-right:5px;font-size:11px}
+
+/* ===== ابزارهای کاربردی ===== */
+.toolsFolder{margin-top:10px}.toolsFolderHead{display:flex;align-items:center;justify-content:space-between;gap:6px}.toolsToggle{width:100%;text-align:right;border:0;background:#f8fafc;padding:12px 14px;border-radius:10px;cursor:pointer;font-weight:700;color:#172033}.toolsToggle:hover{background:#eef4ff;color:#2563eb}.toolsSub{display:none;padding:4px 0 4px 8px}.toolsSub.open{display:block}.toolsSub .navItem{font-size:13px;padding:10px 12px}.toolsPanel{display:none}.toolsPanel.active{display:block}.toolTabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.toolTabs button{border:1px solid #d5dbe5;background:#fff;border-radius:10px;padding:9px 12px;cursor:pointer;font-weight:600}.toolTabs button.active{background:#2563eb;color:#fff;border-color:#2563eb}.toolGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.toolCard{background:#fff;border:1px solid #e4e8ef;border-radius:14px;padding:16px;box-shadow:0 3px 14px #0000000a}.toolCard h3{margin-top:0}.toolFields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.toolResult{margin-top:12px;padding:12px;border-radius:10px;background:#f8fafc;border:1px solid #e5e7eb;line-height:1.9}.toolSuccess{border-color:#86efac;background:#f0fdf4}.toolDanger{border-color:#fca5a5;background:#fef2f2}.calcDisplay{width:100%;font-size:24px;font-weight:700;direction:ltr;text-align:left;padding:12px;border:1px solid #d5dbe5;border-radius:10px;box-sizing:border-box}.calcKeys{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}.calcKeys button{padding:12px 5px;border:1px solid #d5dbe5;background:#f8fafc;border-radius:9px;font-size:17px;cursor:pointer}.calcKeys button:hover{background:#eef4ff}.calcKeys .op{font-weight:700}.calcHistory{max-height:180px;overflow:auto;margin-top:10px;font-size:13px}.calcHistory div{padding:6px 8px;border-bottom:1px solid #eee;cursor:pointer}.reconGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.reconGrid textarea{min-height:230px;resize:vertical}.diffRow{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;padding:7px;border-bottom:1px solid #eee}.mini{font-size:12px;color:#667085}@media(max-width:800px){.toolGrid,.reconGrid,.toolFields{grid-template-columns:1fr}}
+
+/* ===== ابزارهای حرفه‌ای حسابرسی و حالت تاریک ===== */
+.auditToolTable{width:100%;border-collapse:collapse;margin-top:10px}.auditToolTable th,.auditToolTable td{border:1px solid #e5e7eb;padding:8px;text-align:right}.auditToolTable th{background:#f8fafc}.toolWide{grid-column:1/-1}.toolNotice{padding:10px;border-radius:10px;background:#eff6ff;border:1px solid #bfdbfe;margin-top:10px}.darkModeToggle{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:#f8fafc;padding:11px 14px;border-radius:10px;cursor:pointer;font-weight:700;color:#172033;margin-top:8px}.darkModeToggle:hover{background:#eef4ff}.dark body{}.darkMode{background:#111827!important;color:#e5e7eb!important}.darkMode .panel,.darkMode .card,.darkMode .toolCard,.darkMode .recoveryPanel{background:#1f2937!important;color:#e5e7eb;border-color:#374151!important}.darkMode .input,.darkMode textarea,.darkMode select,.darkMode .calcDisplay{background:#111827!important;color:#f3f4f6!important;border-color:#4b5563!important}.darkMode .toolResult{background:#111827;border-color:#374151}.darkMode .toolTabs button,.darkMode .calcKeys button,.darkMode .recoveryActions button,.darkMode .recoveryItem button{background:#374151;color:#f3f4f6;border-color:#4b5563}.darkMode .toolsToggle,.darkMode .darkModeToggle{background:#374151;color:#f3f4f6}.darkMode .auditToolTable th{background:#374151}.darkMode .auditToolTable th,.darkMode .auditToolTable td{border-color:#4b5563}.darkMode .muted,.darkMode .mini{color:#9ca3af!important}.darkMode .toolsSub{background:#1f2937}.darkMode .navItem:hover{background:#374151}
+</style></style>
+<style id="audit-docs-css">
+.auditDocUploadGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.auditDocBox{border:2px dashed #cbd5e1;border-radius:15px;padding:16px;background:#f8fafc;transition:.2s}
+.auditDocBox:hover{border-color:#2563eb;background:#f4f7ff}
+.auditDocBox h3{margin:0 0 7px}
+.auditDocBox input[type=file]{width:100%;margin-top:9px}
+.auditDocFiles{margin-top:10px;font-size:12px;color:#475467}
+.auditDocFile{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 8px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;margin-top:5px}
+.auditDocControls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.auditDocSummary{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
+.auditDocKpi{padding:13px;border-radius:12px;background:#f8fafc;border:1px solid #e5e7eb}
+.auditDocKpi b{display:block;font-size:21px;margin-top:4px}
+.auditDocResult{border-radius:13px;padding:14px;margin:10px 0;border:1px solid #e5e7eb;background:#fff}
+.auditDocResult.ok{background:#f0fdf4;border-color:#86efac}
+.auditDocResult.warn{background:#fffbeb;border-color:#fcd34d}
+.auditDocResult.bad{background:#fef2f2;border-color:#fca5a5}
+.auditDocPill{display:inline-block;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:700;margin-left:5px}
+.auditDocPill.ok{background:#dcfce7;color:#166534}.auditDocPill.warn{background:#fef3c7;color:#92400e}.auditDocPill.bad{background:#fee2e2;color:#991b1b}.auditDocPill.info{background:#dbeafe;color:#1e40af}
+.auditDocTable{width:100%;border-collapse:collapse;min-width:900px}
+.auditDocTable th,.auditDocTable td{padding:9px;border-bottom:1px solid #e5e7eb;text-align:right;vertical-align:top}
+.auditDocTable th{background:#f8fafc}
+.auditDocText{line-height:2;white-space:pre-wrap}
+.auditDocTextArea{min-height:145px;width:100%;resize:vertical}
+.auditDocLoading{display:none;padding:12px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px}
+.auditDocLoading.show{display:block}
+.auditDocActions{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:950px){.auditDocUploadGrid,.auditDocControls{grid-template-columns:1fr}.auditDocSummary{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:550px){.auditDocSummary{grid-template-columns:1fr}}
+.darkMode .auditDocBox,.darkMode .auditDocKpi,.darkMode .auditDocResult,.darkMode .auditDocFile{background:#1f2937;color:#e5e7eb;border-color:#4b5563}
+.darkMode .auditDocTable th{background:#374151}.darkMode .auditDocTable th,.darkMode .auditDocTable td{border-color:#4b5563}
+</style>
+<style id="audit-files-css">
+.auditFilesPanel{min-height:500px}.auditFilesHeader{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;flex-wrap:wrap}.auditFilesActions,.auditFilesToolbar{display:flex;gap:8px;flex-wrap:wrap}.auditFilesToolbar{margin:15px 0}.auditFilesToolbar input{flex:1;min-width:250px}.auditFilesStats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.auditFilesStat{padding:8px 12px;border-radius:10px;background:#f8fafc;border:1px solid #e5e7eb;font-size:13px}.auditFilesGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.auditFileCard{background:#fff;border:1px solid #e4e8ef;border-radius:16px;padding:14px;box-shadow:0 4px 14px #0000000a;display:flex;flex-direction:column}.auditFileIcon{height:100px;border-radius:13px;background:#f4f7fb;display:flex;align-items:center;justify-content:center;font-size:55px;margin-bottom:10px;overflow:hidden}.auditFileIcon img{width:100%;height:100%;object-fit:cover}.auditFileName{font-weight:700;line-height:1.7;word-break:break-word;min-height:48px}.auditFileMeta{font-size:11px;color:#667085;line-height:1.8;margin:5px 0 10px}.auditFileNameInput{width:100%;border:1px solid #d5dbe5;border-radius:9px;padding:8px;display:none;margin-bottom:8px}.auditFileActions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:auto}.auditFileActions .btn{padding:8px 5px;font-size:12px}.auditFileActions .danger{grid-column:1/-1}.auditFilesDrop{border:2px dashed #cbd5e1;border-radius:14px;padding:22px;text-align:center;margin:14px 0;background:#f8fafc;cursor:pointer}.auditFilesDrop:hover{border-color:#2563eb;background:#f4f7ff}.auditPreviewModal{z-index:120}.auditPreviewBox{width:min(1200px,96vw);height:min(90vh,850px);padding:14px;display:flex;flex-direction:column}.auditPreviewHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.auditPreviewBody{flex:1;overflow:auto;border:1px solid #e5e7eb;border-radius:12px;background:#f8fafc;padding:10px}.auditPreviewBody iframe{width:100%;height:100%;min-height:650px;border:0;background:#fff}.auditPreviewBody img{max-width:100%;max-height:75vh;display:block;margin:auto}.auditPreviewSheet{background:#fff;overflow:auto;max-height:100%;padding:10px}.auditPreviewSheet table{min-width:700px}.auditPreviewInfo{text-align:center;padding:60px 20px;color:#667085;line-height:2}.darkMode .auditFilesStat,.darkMode .auditFileCard,.darkMode .auditFileIcon,.darkMode .auditFilesDrop{background:#1f2937;color:#e5e7eb;border-color:#4b5563}.darkMode .auditFileMeta{color:#9ca3af}.darkMode .auditPreviewBody{background:#111827;border-color:#374151}@media(max-width:1150px){.auditFilesGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:800px){.auditFilesGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.auditFilesGrid{grid-template-columns:1fr}}
+</style>
+<style id="audit-theme-customizer-css">
+:root{--audit-primary:#2563eb;--audit-header:#172554;--audit-bg:#f3f6fa;--audit-panel:#fff}
+body{background:var(--audit-bg)}header{background:linear-gradient(135deg,var(--audit-header),color-mix(in srgb,var(--audit-header),#64748b 38%))}
+.tabs button.active,.primary,.toolTabs button.active{background:var(--audit-primary)!important;border-color:var(--audit-primary)!important}
+.editor:focus{border-color:var(--audit-primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--audit-primary),transparent 85%)}
+.card,.panel,.noteCard,.toolCard,.auditFileCard{background:var(--audit-panel)}
+.drawer button.navItem:hover,.drawer button.navItem.active,.toolsToggle:hover,.toolsToggle:focus{color:var(--audit-primary)}
+.appearancePanel{border:1px solid #dbe2ea;border-radius:16px;padding:18px;margin:0 0 18px;background:var(--audit-panel)}.appearancePanel h3{margin:0 0 6px}.appearanceGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.appearanceGrid input[type=color]{height:42px;padding:4px;cursor:pointer}.appearanceActions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:14px}
+body.audit-glass .panel,body.audit-glass .card,body.audit-glass .toolCard,body.audit-glass .noteCard,body.audit-glass .auditFileCard{background:color-mix(in srgb,var(--audit-panel),transparent 12%);backdrop-filter:blur(12px);border:1px solid color-mix(in srgb,var(--audit-primary),transparent 78%);box-shadow:0 8px 28px color-mix(in srgb,var(--audit-header),transparent 90%)}
+body.audit-soft .panel,body.audit-soft .card,body.audit-soft .toolCard,body.audit-soft .noteCard,body.audit-soft .auditFileCard{border-radius:22px;box-shadow:0 7px 24px #0000000c}
+body.audit-compact .panel{padding:11px;border-radius:9px;margin-bottom:10px}body.audit-compact .card{padding:10px;border-radius:9px}body.audit-compact th,body.audit-compact td{padding:6px}
+@media(max-width:750px){.appearanceGrid{grid-template-columns:1fr 1fr}}@media(max-width:500px){.appearanceGrid{grid-template-columns:1fr}}
+</style>
+</head><body><header><div><h1 id="headerTitle">سیستم حرفه‌ای مدیریت عملیات شرکت حسابرسی</h1><div class="muted" style="color:#cbd5e1;margin-top:4px" id="headerSub">مدیریت حرفه‌ای پرونده‌ها، وظایف، مدارک، نامه‌ها و عملکرد تیم</div></div><div id="dateTimeBox" style="text-align:center;min-width:190px;background:#ffffff12;border:1px solid #ffffff22;border-radius:12px;padding:8px 14px"><div id="liveDate" style="font-size:13px;color:#dbeafe">—</div><div id="liveTime" style="font-size:20px;font-weight:700;letter-spacing:1px;margin-top:2px">—</div></div><button class="menuBtn" onclick="toggleMenu()" aria-label="منو">☰</button></header>
+<div class="drawerOverlay" id="drawerOverlay" onclick="closeMenu()"></div><aside class="drawer" id="drawer"><div class="drawerHead"><h3>منوی مدیریت</h3><button class="drawerClose" onclick="closeMenu()">×</button></div><button class="navItem active" data-tab="dashboard" onclick="tab('dashboard',this)">📊 داشبورد</button><button class="navItem" data-tab="projects" onclick="tab('projects',this)">📁 پرونده‌ها</button><button class="navItem" data-tab="tasks" onclick="tab('tasks',this)">✅ تسک‌ها و وظایف</button><button class="navItem" data-tab="letters" onclick="tab('letters',this)">✉️ نامه‌های درخواست</button><button class="navItem" data-tab="docs" onclick="tab('docs',this)">📄 مدارک درخواستی</button><button class="navItem" data-tab="staff" onclick="tab('staff',this)">👥 پرسنل</button><button class="navItem" data-tab="notes" onclick="tab('notes',this)">📝 یادداشت‌ها</button><button class="navItem" data-tab="reports" onclick="tab('reports',this)">📈 گزارش‌ها</button><button class="navItem" data-tab="auditDocs" onclick="tab('auditDocs',this)">🧾 تطبیق اسناد حسابرسی</button><button class="navItem" data-tab="auditFiles" onclick="tab('auditFiles',this)">📚 کاربرگ‌ها و فایل‌های حسابرسی</button><button class="navItem" data-tab="auditSuite" onclick="tab('auditSuite',this)">🧩 کنترل سایر سرفصل‌ها</button><button class="navItem" data-tab="settings" onclick="tab('settings',this)">⚙️ تنظیمات</button><div class="menuGroup toolsFolder"><button class="toolsToggle" onclick="toggleToolsMenu();return false">🧰 ابزارها <span id="toolsArrow">⌄</span></button><div id="toolsSub" class="toolsSub"><button class="navItem" onclick="openTool('calculator')">🧮 ماشین حساب حرفه‌ای</button><button class="navItem" onclick="openTool('reconcile')">🔎 مغایرت‌گیری</button><button class="navItem" onclick="openTool('advancedRecon')">🧠 مغایرت‌گیری پیشرفته</button><button class="navItem" onclick="openTool('dateConvert')">📅 تبدیل تاریخ</button><button class="navItem" onclick="openTool('rialToman')">💰 ریال ↔ تومان</button><button class="navItem" onclick="openTool('amountWords')">🔤 مبلغ به حروف</button><button class="navItem" onclick="openTool('trialBalance')">⚖️ کنترل تراز آزمایشی</button><button class="navItem" onclick="openTool('sampling')">🎲 نمونه‌گیری حسابرسی</button><button class="navItem" onclick="openTool('depreciation')">📉 محاسبه استهلاک</button><button class="navItem" onclick="openTool('bankRecon')">🏦 مغایرت بانکی</button><button class="navItem" onclick="openTool('dateDiff')">⏱️ فاصله بین تاریخ</button><button class="navItem" onclick="openTool('percent')">📊 درصد و تغییرات</button><button class="navItem" onclick="openTool('sum')">➕ جمع و کنترل اعداد</button></div></div><div class="menuGroup"><button class="darkModeToggle" onclick="toggleDarkMode();return false"><span>🌙 حالت دارک مود</span><span id="darkModeState">خاموش</span></button></div><div class="menuGroup"><button class="navItem" onclick="backup();closeMenu()">💾 پشتیبان JSON</button><button class="navItem" onclick="restoreFile();closeMenu()">↩️ بازیابی اطلاعات</button><button class="navItem" onclick="window.print();closeMenu()">🖨️ PDF / چاپ</button></div></aside>
+<main class="wrap">
+<section id="recoveryPanel" class="recoveryPanel" style="display:none"><div class="recoveryHead"><div><h3>🗂️ سیستم نسخه‌بندی و بازیابی</h3><div class="muted">نسخه‌های پشتیبان را ذخیره کن، مقایسه کن و در صورت نیاز اطلاعات قبلی را بازیابی کن.</div></div><div class="recoveryActions"><button class="primary" type="button" onclick="recoveryCreate()">➕ ایجاد نسخه</button><button type="button" onclick="recoveryExport()">⬇️ خروجی پشتیبان</button><button type="button" onclick="recoveryImport()">⬆️ ورود/بازیابی</button></div></div><div id="recoveryList" class="recoveryList"></div><input id="recoveryFile" type="file" accept=".json,application/json" style="display:none" onchange="recoveryReadFile(this)"></section>
+<section id="dashboard"><div id="smartAlertsPanel" class="smartAlerts"><h3>🚨 هشدار هوشمند</h3><div class="smartAlertStats"><span id="smartCriticalCount" class="smartAlertStat smartAlertCritical">بحرانی: 0</span><span id="smartWarnCount" class="smartAlertStat smartAlertWarn">هشدار: 0</span><span id="smartInfoCount" class="smartAlertStat smartAlertInfo">اطلاع: 0</span></div><div class="smartAlertFilters"><button class="active" onclick="smartAlertFilter('all',this)">همه</button><button onclick="smartAlertFilter('critical',this)">بحرانی</button><button onclick="smartAlertFilter('warn',this)">هشدار</button><button onclick="smartAlertFilter('info',this)">اطلاع</button></div><div id="smartAlertsList"></div></div><div class="cards"><div class="card"><span>کل پرونده‌ها</span><b id="cProjects">0</b></div><div class="card"><span>پرونده‌های فعال</span><b id="cActive">0</b></div><div class="card"><span>تکمیل‌شده</span><b id="cDone">0</b></div><div class="card"><span>موارد تأخیردار</span><b id="cLate">0</b></div><div class="card"><span>تسک‌های باز</span><b id="cTasks">0</b></div><div class="card"><span>مدارک ناقص</span><b id="cIncomplete">0</b></div><div class="card"><span>تحویل‌نشده</span><b id="cMissing">0</b></div><div class="card"><span>نامه‌های در انتظار پاسخ</span><b id="cLetters">0</b></div><div class="card"><span>ساعات بودجه</span><b id="cBudgetHours">0</b></div><div class="card"><span>ساعات مصرف‌شده</span><b id="cUsedHours">0</b></div></div>
+<div class="grid2"><div class="panel"><h2>نمودار وضعیت وظایف</h2><div id="taskDonut" class="donut"></div><div class="legend" id="taskLegend"></div></div><div class="panel"><h2>خلاصه مدارک درخواستی</h2><div id="docSummary"></div></div></div>
+<div class="grid2"><div class="panel"><h2>نزدیک‌ترین مهلت‌ها</h2><div id="upcoming"></div></div><div class="panel"><h2>هشدارهای مدیریتی</h2><div id="alerts"></div></div></div><div class="grid2"><div class="panel"><h2>عملکرد و حجم کار پرسنل</h2><div id="staffPerformance"></div></div><div class="panel"><h2>نمای کلی ظرفیت پرونده‌ها</h2><div id="projectCapacity"></div></div></div></section>
+<section id="projects" hidden><div class="panel"><div class="toolbar"><input id="pSearch" placeholder="جستجوی پرونده، شرکت، مسئول..." oninput="renderProjects()"><button class="btn primary" onclick="openProject()">＋ پرونده جدید</button><button class="btn" onclick="exportCSV('projects')">خروجی Excel/CSV</button></div><div class="tablewrap"><table><thead><tr><th>شرکت / پرونده</th><th>نوع</th><th>سال مالی</th><th>مسئول</th><th>شروع</th><th>مهلت</th><th>اولویت</th><th>ساعات</th><th>وضعیت</th><th>پیشرفت</th><th>عملیات</th></tr></thead><tbody id="projectsBody"></tbody></table></div></div></section>
+<section id="tasks" hidden><div class="panel"><div class="toolbar"><input id="tSearch" placeholder="جستجوی تسک..." oninput="renderTasks()"><select id="tFilter" onchange="renderTasks()"><option value="">همه وضعیت‌ها</option><option>باز</option><option>در حال انجام</option><option>تکمیل</option><option>لغوشده</option></select><button class="btn primary" onclick="openTask()">＋ تسک جدید</button><button class="btn" onclick="exportCSV('tasks')">خروجی Excel/CSV</button></div><div class="tablewrap"><table><thead><tr><th>عنوان</th><th>پرونده</th><th>مسئول</th><th>مهلت فارسی</th><th>اولویت</th><th>ساعات</th><th>وضعیت</th><th>پیشرفت</th><th>عملیات</th></tr></thead><tbody id="tasksBody"></tbody></table></div></div></section>
+<section id="letters" hidden><div class="panel"><div class="toolbar"><input id="lSearch" placeholder="جستجوی نامه..." oninput="renderLetters()"><button class="btn primary" onclick="openLetter()">＋ نامه جدید</button><button class="btn" onclick="exportCSV('letters')">خروجی Excel/CSV</button></div><div class="tablewrap"><table><thead><tr><th>شماره / عنوان</th><th>پرونده</th><th>تاریخ درخواست</th><th>مهلت پاسخ</th><th>گیرنده</th><th>وضعیت</th><th>توضیحات</th><th>عملیات</th></tr></thead><tbody id="lettersBody"></tbody></table></div></div></section>
+<section id="docs" hidden><div class="panel"><div class="toolbar"><input id="dSearch" placeholder="جستجوی مدرک..." oninput="renderDocs()"><select id="dFilter" onchange="renderDocs()"><option value="">همه وضعیت‌ها</option><option>تحویل کامل</option><option>ناقص</option><option>تحویل نشده</option><option>در انتظار بررسی</option></select><button class="btn primary" onclick="openDoc()">＋ مدرک جدید</button><button class="btn" onclick="exportCSV('docs')">خروجی Excel/CSV</button></div><div class="tablewrap"><table><thead><tr><th>مدرک</th><th>پرونده</th><th>تاریخ درخواست</th><th>مهلت</th><th>وضعیت</th><th>تحویل</th><th>ناقص</th><th>توضیحات</th><th>عملیات</th></tr></thead><tbody id="docsBody"></tbody></table></div></div></section>
+<section id="staff" hidden><div class="panel"><div class="toolbar"><input id="sSearch" placeholder="جستجوی پرسنل..." oninput="renderStaff()"><button class="btn primary" onclick="openStaff()">＋ پرسنل جدید</button><button class="btn" onclick="exportCSV('staff')">خروجی Excel/CSV</button></div><div class="tablewrap"><table><thead><tr><th>نام</th><th>سمت</th><th>تلفن</th><th>پرونده‌ها</th><th>تسک‌های باز</th><th>عملیات</th></tr></thead><tbody id="staffBody"></tbody></table></div></div></section>
+<section id="notes" hidden><div class="panel"><div class="toolbar"><input id="nSearch" placeholder="جستجو در عنوان، متن، برچسب و پرونده..." oninput="renderNotes()"><select id="nFilter" onchange="renderNotes()"><option value="">همه یادداشت‌ها</option><option value="پین">📌 سنجاق‌شده</option><option value="مهم">مهم</option><option value="ایده">ایده</option><option value="پیگیری">پیگیری</option></select><button class="btn primary" onclick="openNote()">＋ یادداشت جدید</button><button class="btn" onclick="exportCSV('notes')">خروجی Excel/CSV</button></div><div id="notesBody" class="notesGrid"></div></div></section>
+
+<section id="tools" hidden><div class="panel"><div class="toolbar"><div><h2 style="margin:0">🧰 ابزارهای کاربردی حسابرسی</h2><div class="muted">مجموعه ابزارهای سریع برای محاسبات، کنترل مغایرت و تاریخ‌ها — کاملاً آفلاین.</div></div></div><div class="toolTabs"><button id="toolTab-advancedRecon" onclick="showTool('advancedRecon',this)">🧠 مغایرت پیشرفته</button><button id="toolTab-rialToman" onclick="showTool('rialToman',this)">💰 ریال/تومان</button><button id="toolTab-amountWords" onclick="showTool('amountWords',this)">🔤 مبلغ به حروف</button><button id="toolTab-trialBalance" onclick="showTool('trialBalance',this)">⚖️ تراز آزمایشی</button><button id="toolTab-sampling" onclick="showTool('sampling',this)">🎲 نمونه‌گیری</button><button id="toolTab-depreciation" onclick="showTool('depreciation',this)">📉 استهلاک</button><button id="toolTab-bankRecon" onclick="showTool('bankRecon',this)">🏦 مغایرت بانکی</button><button id="toolTab-calculator" class="active" onclick="showTool('calculator',this)">🧮 ماشین حساب</button><button id="toolTab-reconcile" onclick="showTool('reconcile',this)">🔎 مغایرت‌گیری</button><button id="toolTab-dateConvert" onclick="showTool('dateConvert',this)">📅 تبدیل تاریخ</button><button id="toolTab-dateDiff" onclick="showTool('dateDiff',this)">⏱️ فاصله تاریخ</button><button id="toolTab-percent" onclick="showTool('percent',this)">📊 درصد و تغییرات</button><button id="toolTab-sum" onclick="showTool('sum',this)">➕ جمع اعداد</button></div>
+<div id="tool-advancedRecon" class="toolsPanel"><div class="toolCard"><h3>🧠 مغایرت‌گیری پیشرفته</h3><div class="muted">دو لیست را وارد کن؛ ابزار موارد فقط در لیست اول، فقط در لیست دوم، مشترک و موارد با مبلغ متفاوت را پیدا می‌کند. برای مبالغ تکراری نیز تعداد وقوع را در نظر می‌گیرد.</div><div class="reconGrid"><label class="field"><span>لیست A</span><textarea id="advA" class="input" placeholder="1000000\n2500000\n3000000"></textarea></label><label class="field"><span>لیست B</span><textarea id="advB" class="input" placeholder="1000000\n2400000\n4000000"></textarea></label></div><div class="toolFields" style="margin-top:10px"><label class="field"><span>تلورانس مبلغ</span><input id="advTol" class="input" type="number" value="0"></label><label class="field"><span>نوع تطبیق</span><select id="advMode" class="input"><option value="amount">بر اساس مبلغ</option><option value="exact">فقط تطبیق دقیق</option></select></label></div><button class="btn primary" style="margin-top:10px" onclick="runAdvancedRecon()">🔍 تطبیق پیشرفته</button><div id="advResult" class="toolResult">—</div></div></div>
+<div id="tool-rialToman" class="toolsPanel"><div class="toolGrid"><div class="toolCard"><h3>💰 ریال ↔ تومان</h3><label class="field"><span>مبلغ</span><input id="moneyValue" class="input" inputmode="decimal" placeholder="12500000"></label><div class="toolFields" style="margin-top:10px"><button class="btn primary" onclick="convertMoney('r2t')">ریال → تومان</button><button class="btn" onclick="convertMoney('t2r')">تومان → ریال</button></div><div id="moneyResult" class="toolResult">—</div></div><div class="toolCard"><h3>📝 فرمت مبلغ</h3><label class="field"><span>مبلغ</span><input id="moneyFmt" class="input" inputmode="decimal" placeholder="12500000"></label><button class="btn primary" style="margin-top:10px" onclick="formatMoneyTool()">نمایش با جداکننده</button><div id="moneyFmtResult" class="toolResult">—</div></div></div></div>
+<div id="tool-amountWords" class="toolsPanel"><div class="toolCard"><h3>🔤 تبدیل مبلغ به حروف</h3><label class="field"><span>مبلغ</span><input id="wordsValue" class="input" inputmode="numeric" placeholder="12450000"></label><div class="toolFields" style="margin-top:10px"><select id="wordsUnit" class="input"><option value="ریال">ریال</option><option value="تومان">تومان</option></select><button class="btn primary" onclick="amountToWordsTool()">تبدیل به حروف</button></div><div id="wordsResult" class="toolResult">—</div></div></div>
+<div id="tool-trialBalance" class="toolsPanel"><div class="toolCard"><h3>⚖️ کنترل تراز آزمایشی</h3><div class="muted">هر حساب را به صورت «نام | بدهکار | بستانکار» در یک خط وارد کن.</div><textarea id="tbInput" class="input" style="min-height:220px;margin-top:10px" placeholder="بانک | 12000000 | 0\nفروش | 0 | 9000000\nهزینه | 3000000 | 0"></textarea><button class="btn primary" style="margin-top:10px" onclick="runTrialBalance()">کنترل تراز</button><div id="tbResult" class="toolResult">—</div></div></div>
+<div id="tool-sampling" class="toolsPanel"><div class="toolCard"><h3>🎲 نمونه‌گیری حسابرسی</h3><div class="toolFields"><label class="field"><span>تعداد جامعه</span><input id="sampleN" class="input" type="number" value="1000"></label><label class="field"><span>حجم نمونه</span><input id="sampleSize" class="input" type="number" value="30"></label><label class="field"><span>بذر تصادفی (اختیاری)</span><input id="sampleSeed" class="input" type="number" placeholder="مثلاً 1405"></label><label class="field"><span>روش</span><select id="sampleMethod" class="input"><option value="random">تصادفی ساده</option><option value="systematic">سیستماتیک</option></select></label></div><button class="btn primary" style="margin-top:10px" onclick="runSampling()">انتخاب نمونه</button><div id="sampleResult" class="toolResult">—</div></div></div>
+<div id="tool-depreciation" class="toolsPanel"><div class="toolCard"><h3>📉 محاسبه استهلاک</h3><div class="toolFields"><label class="field"><span>بهای تمام‌شده</span><input id="depCost" class="input" type="number"></label><label class="field"><span>ارزش اسقاط</span><input id="depSalvage" class="input" type="number" value="0"></label><label class="field"><span>عمر مفید (سال)</span><input id="depLife" class="input" type="number" value="5"></label><label class="field"><span>سال استفاده‌شده</span><input id="depUsed" class="input" type="number" value="1"></label></div><label class="field" style="margin-top:10px"><span>روش</span><select id="depMethod" class="input"><option value="straight">خط مستقیم</option><option value="double">مانده نزولی دو برابر</option></select></label><button class="btn primary" style="margin-top:10px" onclick="runDepreciation()">محاسبه</button><div id="depResult" class="toolResult">—</div></div></div>
+<div id="tool-bankRecon" class="toolsPanel"><div class="toolCard"><h3>🏦 مغایرت بانکی</h3><div class="muted">مانده دفاتر و بانک را همراه با اقلام تعدیلی وارد کن. اقلام مثبت مانده را افزایش و اقلام منفی آن را کاهش می‌دهند.</div><div class="toolFields"><label class="field"><span>مانده طبق دفاتر</span><input id="bankBooks" class="input" type="number"></label><label class="field"><span>مانده طبق بانک</span><input id="bankStatement" class="input" type="number"></label><label class="field"><span>واریزی ثبت‌نشده در دفاتر</span><input id="bankDeposits" class="input" type="number" value="0"></label><label class="field"><span>چک‌های در جریان</span><input id="bankChecks" class="input" type="number" value="0"></label><label class="field"><span>کارمزد/هزینه ثبت‌نشده</span><input id="bankFees" class="input" type="number" value="0"></label><label class="field"><span>سایر تعدیلات دفاتر</span><input id="bankOther" class="input" type="number" value="0"></label></div><button class="btn primary" style="margin-top:10px" onclick="runBankRecon()">انجام مغایرت‌گیری</button><div id="bankResult" class="toolResult">—</div></div></div>
+<div id="tool-calculator" class="toolsPanel active"><div class="toolGrid"><div class="toolCard"><h3>🧮 ماشین حساب حرفه‌ای</h3><input id="calcDisplay" class="calcDisplay" inputmode="decimal" placeholder="0" onkeydown="if(event.key==='Enter')calcEval()"><div class="calcKeys"><button onclick="calcMem('MC')">MC</button><button onclick="calcMem('MR')">MR</button><button onclick="calcMem('M+')">M+</button><button onclick="calcMem('M-')">M-</button><button onclick="calcClear()">C</button><button onclick="calcBack()">⌫</button><button onclick="calcInput('(')">(</button><button onclick="calcInput(')')">)</button><button onclick="calcInput('7')">7</button><button onclick="calcInput('8')">8</button><button onclick="calcInput('9')">9</button><button class="op" onclick="calcInput('/')">÷</button><button onclick="calcInput('4')">4</button><button onclick="calcInput('5')">5</button><button onclick="calcInput('6')">6</button><button class="op" onclick="calcInput('*')">×</button><button onclick="calcInput('1')">1</button><button onclick="calcInput('2')">2</button><button onclick="calcInput('3')">3</button><button class="op" onclick="calcInput('-')">−</button><button onclick="calcInput('0')">0</button><button onclick="calcInput('.')">.</button><button onclick="calcInput('%')">%</button><button class="op" onclick="calcInput('+')">+</button><button style="grid-column:span 4;background:#2563eb;color:#fff" onclick="calcEval()">= محاسبه</button></div></div><div class="toolCard"><h3>تاریخچه محاسبات</h3><div class="mini">برای استفاده دوباره، روی نتیجه موردنظر کلیک کن.</div><div id="calcHistory" class="calcHistory"></div></div></div></div>
+<div id="tool-reconcile" class="toolsPanel"><div class="toolCard"><h3>🔎 مغایرت‌گیری دو لیست</h3><div class="muted">هر مبلغ/عدد را در یک خط وارد کن. ترتیب دو لیست بررسی می‌شود و جمع کل، تعداد و مغایرت هر ردیف نمایش داده می‌شود.</div><div class="reconGrid"><label class="field"><span>لیست اول</span><textarea id="reconA" class="input" placeholder="1000000
+2500000
+3000000"></textarea></label><label class="field"><span>لیست دوم</span><textarea id="reconB" class="input" placeholder="1000000
+2400000
+3000000"></textarea></label></div><div class="toolbar" style="margin-top:10px"><label class="field" style="min-width:160px"><span>دامنه قابل قبول</span><input id="reconTol" class="input" type="number" value="0"></label><button class="btn primary" onclick="runRecon()">🔍 شروع مغایرت‌گیری</button><button class="btn" onclick="clearRecon()">پاک‌کردن</button></div><div id="reconResult"></div></div></div>
+<div id="tool-dateConvert" class="toolsPanel"><div class="toolGrid"><div class="toolCard"><h3>📅 میلادی ← → شمسی</h3><label class="field"><span>تاریخ میلادی</span><input id="gDate" class="input" placeholder="2026-09-13" inputmode="numeric"></label><button class="btn primary" onclick="gToJ()">تبدیل به شمسی</button><div id="gToJResult" class="toolResult">—</div></div><div class="toolCard"><h3>📅 شمسی ← → میلادی</h3><label class="field"><span>تاریخ شمسی</span><input id="jDate" class="input" placeholder="1405-06-22" inputmode="numeric"></label><button class="btn primary" onclick="jToG()">تبدیل به میلادی</button><div id="jToGResult" class="toolResult">—</div></div></div></div>
+<div id="tool-dateDiff" class="toolsPanel"><div class="toolCard"><h3>⏱️ محاسبه فاصله بین دو تاریخ</h3><div class="toolFields"><label class="field"><span>نوع تاریخ</span><select id="diffCal" class="input"><option value="j">شمسی</option><option value="g">میلادی</option></select></label><label class="field"><span>روزهای کاری؟</span><select id="diffWork" class="input"><option value="no">خیر</option><option value="yes">بله، جمعه تعطیل</option></select></label><label class="field"><span>تاریخ اول</span><input id="diffA" class="input" placeholder="1405-01-01"></label><label class="field"><span>تاریخ دوم</span><input id="diffB" class="input" placeholder="1405-06-22"></label></div><button class="btn primary" style="margin-top:10px" onclick="calcDateDiff()">محاسبه فاصله</button><div id="diffResult" class="toolResult">—</div></div></div>
+<div id="tool-percent" class="toolsPanel"><div class="toolGrid"><div class="toolCard"><h3>📊 درصد تغییر</h3><div class="toolFields"><label class="field"><span>مقدار قبلی</span><input id="pctOld" class="input" type="number"></label><label class="field"><span>مقدار جدید</span><input id="pctNew" class="input" type="number"></label></div><button class="btn primary" style="margin-top:10px" onclick="calcPercentChange()">محاسبه</button><div id="pctResult" class="toolResult">—</div></div><div class="toolCard"><h3>🧾 محاسبه درصد یک مبلغ</h3><div class="toolFields"><label class="field"><span>مبلغ</span><input id="pctBase" class="input" type="number"></label><label class="field"><span>درصد</span><input id="pctRate" class="input" type="number" value="10"></label></div><button class="btn primary" style="margin-top:10px" onclick="calcPercentAmount()">محاسبه</button><div id="pctAmountResult" class="toolResult">—</div></div></div></div>
+<div id="tool-sum" class="toolsPanel"><div class="toolCard"><h3>➕ جمع و کنترل اعداد</h3><div class="muted">اعداد را با خط جدید، فاصله یا ویرگول وارد کن. برای کنترل سریع جمع اسناد، گردش حساب یا کاربرگ‌ها مناسب است.</div><textarea id="sumInput" class="input" style="min-height:180px;margin-top:10px" placeholder="1,250,000
+2,500,000
+3000000"></textarea><button class="btn primary" style="margin-top:10px" onclick="calcSum()">جمع و کنترل</button><div id="sumResult" class="toolResult">—</div></div></div>
+</div></section>
+
+<section id="auditDocs" hidden>
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap">
+      <div>
+        <h2 style="margin:0">🧾 تطبیق اسناد حسابرسی — بانک</h2>
+        <div class="muted" style="margin-top:6px">
+          چند مدرک را هم‌زمان وارد کن؛ سیستم داده‌های قابل استخراج را نرمال می‌کند، مانده‌ها و گردش‌ها را تطبیق می‌دهد و متن کنترل حسابرسی پیشنهاد می‌کند.
+        </div>
+      </div>
+      <div class="auditDocActions">
+        <button class="btn" onclick="auditDocsLoadDemo()">🧪 نمونه آزمایشی</button>
+        <button class="btn" onclick="auditDocsClear()">🗑️ پاک‌کردن</button>
+        <button class="btn primary" onclick="auditDocsRun()">🔍 اجرای تطبیق</button>
+      </div>
+    </div>
+
+    <div class="auditDocControls" style="margin-top:15px">
+      <label class="field"><span>تلورانس مبلغ</span><input id="auditDocTolerance" class="input" type="number" value="0"></label>
+      <label class="field"><span>حداکثر فاصله تاریخ (روز)</span><input id="auditDocDateTolerance" class="input" type="number" value="2" min="0"></label>
+      <label class="field"><span>واحد مبالغ</span><select id="auditDocUnit" class="input"><option>ریال</option><option>تومان</option><option>نامشخص</option></select></label>
+      <label class="field"><span>سطح رسیدگی</span><select id="auditDocDepth" class="input"><option value="normal">استاندارد</option><option value="strict">سخت‌گیرانه</option></select></label>
+    </div>
+
+    <div class="auditDocUploadGrid" style="margin-top:15px">
+      <div class="auditDocBox">
+        <h3>📒 دفاتر / گردش حساب</h3>
+        <div class="muted">Excel، CSV، TXT، JSON یا PDF. ترجیحاً شامل تاریخ، شرح، بدهکار، بستانکار و مانده.</div>
+        <input id="auditBooksFiles" type="file" multiple accept=".xlsx,.xls,.csv,.txt,.json,.pdf">
+        <div id="auditBooksList" class="auditDocFiles">فایلی انتخاب نشده است.</div>
+      </div>
+      <div class="auditDocBox">
+        <h3>🏦 صورتحساب بانک</h3>
+        <div class="muted">گردش حساب یا صورتحساب بانکی برای تطبیق با دفاتر.</div>
+        <input id="auditBankFiles" type="file" multiple accept=".xlsx,.xls,.csv,.txt,.json,.pdf">
+        <div id="auditBankList" class="auditDocFiles">فایلی انتخاب نشده است.</div>
+      </div>
+      <div class="auditDocBox">
+        <h3>🧮 صورت مغایرت بانکی</h3>
+        <div class="muted">صورت مغایرت تهیه‌شده توسط واحد مالی یا حسابداری.</div>
+        <input id="auditReconFiles" type="file" multiple accept=".xlsx,.xls,.csv,.txt,.json,.pdf">
+        <div id="auditReconList" class="auditDocFiles">فایلی انتخاب نشده است.</div>
+      </div>
+      <div class="auditDocBox">
+        <h3>✉️ تأییدیه بانک</h3>
+        <div class="muted">تأییدیه مانده، شماره حساب و اطلاعات بانکی. PDF یا فایل متنی/اکسل قابل استفاده است.</div>
+        <input id="auditConfirmFiles" type="file" multiple accept=".xlsx,.xls,.csv,.txt,.json,.pdf">
+        <div id="auditConfirmList" class="auditDocFiles">فایلی انتخاب نشده است.</div>
+      </div>
+    </div>
+
+    <div id="auditDocLoading" class="auditDocLoading" style="margin-top:14px">⏳ در حال خواندن و تحلیل فایل‌ها...</div>
+    <div id="auditDocSummary" class="auditDocSummary" style="display:none"></div>
+    <div id="auditDocResults"></div>
+  </div>
+</section>
+<section id="auditFiles" hidden><div class="panel auditFilesPanel">
+<div class="auditFilesHeader"><div><h2 style="margin:0">📚 کاربرگ‌ها</h2><div class="muted" style="margin-top:6px">مدیریت، پیش‌نمایش، تغییر نام، دانلود و نگهداری فایل‌های کاربرگ و مستندات حسابرسی</div></div>
+<div class="auditFilesActions"><button class="btn primary" onclick="auditFilesPick()">＋ آپلود فایل</button><button class="btn" onclick="auditFilesRefresh()">↻ به‌روزرسانی</button><input id="auditFilesInput" type="file" multiple hidden onchange="auditFilesHandleUpload(this.files)"></div></div>
+<div class="auditFilesDrop" onclick="auditFilesPick()">📂 فایل‌های Word، Excel، PDF، PowerPoint، تصاویر و سایر فایل‌ها را اینجا بکشید یا برای انتخاب کلیک کنید<br><span class="muted">فایل‌ها در حافظه محلی مرورگر نگهداری می‌شوند.</span></div>
+<div class="auditFilesToolbar"><input id="auditFilesSearch" class="input" placeholder="جستجوی نام فایل..." oninput="auditFilesRender()"><select id="auditFilesFilter" class="input" onchange="auditFilesRender()"><option value="">همه فایل‌ها</option><option value="word">Word</option><option value="excel">Excel</option><option value="pdf">PDF</option><option value="powerpoint">PowerPoint</option><option value="image">تصویر</option><option value="other">سایر</option></select></div>
+<div id="driveConnectPanel" class="panel" style="margin:14px 0;padding:16px;border:1px solid #d5dbe5;border-radius:14px;background:var(--panel, #fff)">
+<div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap"><div><strong>☁️ اتصال به Google Drive</strong><div class="muted" style="font-size:12px;margin-top:5px">پوشه مشترک حسابرسی؛ فایل‌های این بخش مستقیماً در Google Drive مدیریت می‌شوند.</div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn primary" id="driveConnectBtn">اتصال به گوگل</button><button type="button" class="btn" id="driveRefreshBtn" disabled>به‌روزرسانی فهرست</button></div></div>
+<div id="driveStatus" role="status" style="margin-top:10px;font-size:13px;line-height:1.9">برای مشاهده فایل‌های پوشه مشترک، ابتدا به حساب Google وارد شوید.</div>
+<div id="driveUploadRow" style="display:none;margin-top:12px;gap:8px;align-items:center;flex-wrap:wrap"><input id="driveUploadInput" type="file" multiple style="max-width:100%"><button type="button" class="btn primary" id="driveUploadBtn">آپلود در پوشه مشترک</button></div>
+<div id="driveList" style="margin-top:12px;display:grid;gap:8px"></div>
+</div>
+<div id="auditFilesStats" class="auditFilesStats"></div><div id="auditFilesGrid" class="auditFilesGrid"></div></div></section>
+<section id="reports" hidden><div class="panel"><h2>گزارش مدیریتی</h2><div class="toolbar"><button class="btn primary" onclick="window.print()">چاپ / PDF کامل</button><button class="btn" onclick="exportAll()">خروجی همه اطلاعات</button><button class="btn" onclick="backup()">پشتیبان JSON</button></div><div id="reportText"></div></div></section>
+<section id="settings" hidden><div class="panel"><h2>تنظیمات</h2>
+<div class="appearancePanel"><h3>🎨 شخصی‌سازی ظاهر داشبورد</h3><p class="muted">تم‌های الهام‌گرفته از حسابداری و حسابرسی را انتخاب کن یا رنگ‌های دلخواهت را بساز. انتخابت در همین مرورگر ذخیره می‌شود.</p>
+<div class="appearanceGrid"><label class="field"><span>تم آماده</span><select id="auditTheme" class="input" onchange="applyAuditTheme(false)"><option value="classic">سرمه‌ای رسمی حسابرسی</option><option value="emerald">سبز مالی</option><option value="burgundy">زرشکی مدیریتی</option><option value="graphite">گرافیتی حرفه‌ای</option><option value="teal">فیروزه‌ای مدرن</option><option value="violet">بنفش تحلیلی</option><option value="custom">رنگ‌های سفارشی من</option></select></label>
+<label class="field"><span>سبک نمایش</span><select id="auditShape" class="input" onchange="applyAuditTheme(false)"><option value="standard">استاندارد حرفه‌ای</option><option value="glass">شیشه‌ای مدرن</option><option value="soft">کارت‌های نرم و گرد</option><option value="compact">فشرده و مینیمال</option></select></label>
+<label class="field"><span>رنگ اصلی</span><input id="auditPrimary" type="color" value="#2563eb" class="input" onchange="setCustomTheme()"></label><label class="field"><span>رنگ سربرگ</span><input id="auditHeader" type="color" value="#172554" class="input" onchange="setCustomTheme()"></label><label class="field"><span>رنگ پس‌زمینه</span><input id="auditBackground" type="color" value="#f3f6fa" class="input" onchange="setCustomTheme()"></label><label class="field"><span>رنگ کارت‌ها</span><input id="auditPanel" type="color" value="#ffffff" class="input" onchange="setCustomTheme()"></label></div>
+<div class="appearanceActions"><button class="btn primary" onclick="saveAuditTheme()">💾 ذخیره ظاهر</button><button class="btn" onclick="resetAuditTheme()">بازگشت به پیش‌فرض</button><span id="themeSavedMsg" class="muted"></span></div></div><div class="grid"><label class="field"><span>نام شرکت حسابرسی</span><input class="input" id="companyName"></label><label class="field"><span>سال مالی پیش‌فرض</span><input class="input" id="defaultYear"></label><label class="field"><span>هشدار سررسید (روز)</span><input class="input" id="alertDays" type="number"></label></div></div><div class="actions"><button class="btn primary" onclick="saveSettings()">ذخیره تنظیمات</button><button class="btn danger" onclick="resetData()">پاک‌کردن همه اطلاعات</button></div></div></section></main>
+<div class="modal" id="modal"><div class="box"><h2 id="modalTitle"></h2><form id="form"></form><div class="actions"><button class="btn primary" onclick="submitForm()">ذخیره</button><button class="btn" onclick="closeModal()">انصراف</button></div></div></div><input id="restoreInput" type="file" accept="application/json" hidden onchange="doRestore(this)">
+<script>
+const KEY='audit_company_dashboard_pro_v3';const base={projects:[],staff:[],tasks:[],letters:[],docs:[],notes:[],settings:{company:'شرکت حسابرسی',year:'1405',alertDays:7}};let db=load();let mode='',editId=null;
+function load(){try{let x=JSON.parse(localStorage.getItem(KEY)||'null');return {...base,...x,settings:{...base.settings,...(x?.settings||{})},projects:x?.projects||[],staff:x?.staff||[],tasks:x?.tasks||[],letters:x?.letters||[],docs:x?.docs||[],notes:x?.notes||[]}}catch(e){return structuredClone(base)}}
+const save=()=>localStorage.setItem(KEY,JSON.stringify(db));const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+function toggleMenu(){drawer.classList.toggle('open');drawerOverlay.classList.toggle('show')}function closeMenu(){drawer.classList.remove('open');drawerOverlay.classList.remove('show')}function tab(id,b){document.querySelectorAll('main>section').forEach(x=>x.hidden=true);document.getElementById(id).hidden=false;document.querySelectorAll('.drawer .navItem[data-tab]').forEach(x=>x.classList.remove('active'));let nav=document.querySelector('.drawer .navItem[data-tab=\"'+id+'\"]');if(nav)nav.classList.add('active');closeMenu();render()}
+function isoNow(){return new Date().toISOString().slice(0,16)}function today(){return new Date().toISOString().slice(0,10)}
+function updateLiveDateTime(){const d=new Date();const ds=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).format(d);const ts=new Intl.DateTimeFormat('fa-IR',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(d);const a=document.getElementById('liveDate'),b=document.getElementById('liveTime');if(a)a.textContent=ds;if(b)b.textContent=ts}
+updateLiveDateTime();setInterval(updateLiveDateTime,1000);
+function faDate(v,withTime=false){if(!v)return '-';let d=new Date(v);if(isNaN(d))return v;return new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit',...(withTime?{hour:'2-digit',minute:'2-digit'}:{})}).format(d)}
+function dueClass(v,status){if(status==='تکمیل'||status==='تحویل کامل')return 'done';if(!v)return '';return new Date(v)<new Date()?'late':''}
+function daysUntil(v){return Math.ceil((new Date(v)-new Date())/86400000)}
+function render(){renderDashboard();renderProjects();renderTasks();renderLetters();renderDocs();renderStaff();renderNotes();renderReports();companyName.value=db.settings.company;defaultYear.value=db.settings.year;alertDays.value=db.settings.alertDays;headerTitle.textContent='داشبورد حرفه‌ای مدیریت '+db.settings.company;headerSub.textContent='مدیریت پرونده، تسک، نامه، مدارک و عملکرد تیم | سال مالی '+db.settings.year}
+function renderDashboard(){let p=db.projects,t=db.tasks,d=db.docs,l=db.letters;let now=new Date();let late=[...p,...t,...l,...d].filter(x=>x.due&&new Date(x.due)<now&&!['تکمیل','تحویل کامل','پاسخ دریافت شد','بسته شد'].includes(x.status)).length;let active=p.filter(x=>x.status!=='تکمیل').length;let done=p.filter(x=>x.status==='تکمیل').length;let open=t.filter(x=>x.status!=='تکمیل'&&x.status!=='لغوشده').length;let inc=d.filter(x=>x.status==='ناقص').length,missing=d.filter(x=>x.status==='تحویل نشده').length;let pendingLetters=l.filter(x=>!['پاسخ دریافت شد','بسته شد'].includes(x.status)).length;let budget=p.reduce((a,x)=>a+Number(x.budgetHours||0),0),used=p.reduce((a,x)=>a+Number(x.usedHours||0),0);cProjects.textContent=p.length;cActive.textContent=active;cDone.textContent=done;cLate.textContent=late;cTasks.textContent=open;cIncomplete.textContent=inc;cMissing.textContent=missing;cLetters.textContent=pendingLetters;cBudgetHours.textContent=budget;cUsedHours.textContent=used;let st=[['باز',t.filter(x=>x.status==='باز').length],['در حال انجام',t.filter(x=>x.status==='در حال انجام').length],['تکمیل',t.filter(x=>x.status==='تکمیل').length],['لغوشده',t.filter(x=>x.status==='لغوشده').length]],total=Math.max(1,t.length),a=0,parts=[];st.forEach((z,i)=>{let q=z[1]/total*100;parts.push(['#16a34a','#f59e0b','#2563eb','#64748b'][i]+' '+a+'% '+(a+q)+'%');a+=q});taskDonut.style.background='conic-gradient('+parts.join(',')+')';taskLegend.innerHTML=st.map((z,i)=>`<span><i class="dot" style="background:${['#16a34a','#f59e0b','#2563eb','#64748b'][i]}"></i>${z[0]}: ${z[1]}</span>`).join('');docSummary.innerHTML=`<div class="kpi"><span>کل مدارک</span><b>${d.length}</b></div><div class="kpi"><span>تحویل کامل</span><b>${d.filter(x=>x.status==='تحویل کامل').length}</b></div><div class="kpi"><span>ناقص</span><b>${inc}</b></div><div class="kpi"><span>تحویل نشده</span><b>${missing}</b></div>`;let all=[...p.map(x=>({...x,label:'پرونده'})),...t.map(x=>({...x,label:'تسک'})),...l.map(x=>({...x,label:'نامه'})),...d.map(x=>({...x,label:'مدرک'}))].filter(x=>x.due&&!['تکمیل','تحویل کامل','پاسخ دریافت شد','بسته شد'].includes(x.status)).sort((a,b)=>new Date(a.due)-new Date(b.due)).slice(0,8);upcoming.innerHTML=all.map(x=>`<div class="notice"><b>${x.label}: ${esc(x.name||x.title||x.subject||x.document||'')}</b><br><span class="muted">مهلت: ${faDate(x.due,true)}</span></div>`).join('')||'<div class="empty">مهلت فعالی وجود ندارد.</div>';let alerts=[];if(late)alerts.push(`🔴 ${late} مورد از مهلت خود عبور کرده است.`);if(inc)alerts.push(`🟠 ${inc} مدرک ناقص است.`);if(missing)alerts.push(`🔴 ${missing} مدرک هنوز تحویل نشده است.`);if(pendingLetters)alerts.push(`🟡 ${pendingLetters} نامه هنوز پاسخ نهایی ندارد.`);if(budget&&used>budget)alerts.push(`🔴 ساعات مصرف‌شده پرونده‌ها از بودجه ساعتی بیشتر شده است.`);document.getElementById('alerts').innerHTML=alerts.map(x=>`<div class="notice">${x}</div>`).join('')||'<div class="notice">🟢 وضعیت کلی مناسب است.</div>';let names=[...new Set(db.staff.map(s=>s.name).filter(Boolean))];staffPerformance.innerHTML=names.map(n=>{let ps=p.filter(x=>x.manager===n),ts=t.filter(x=>x.manager===n),open=ts.filter(x=>!['تکمیل','لغوشده'].includes(x.status)).length,doneT=ts.filter(x=>x.status==='تکمیل').length,totalT=ts.length,score=totalT?Math.round(doneT/totalT*100):0;return `<div class="notice"><b>${esc(n)}</b><br><span class="muted">پرونده: ${ps.length} | تسک باز: ${open} | تسک تکمیل: ${doneT} | عملکرد تسک: ${score}%</span><div class="progress"><i style="width:${score}%"></i></div></div>`}).join('')||'<div class="empty">پرسنلی ثبت نشده است.</div>';projectCapacity.innerHTML=p.slice().sort((a,b)=>Number(b.progress||0)-Number(a.progress||0)).slice(0,8).map(x=>`<div class="notice"><b>${esc(x.name)}</b><br><span class="muted">${esc(x.manager||'بدون مسئول')} | ${esc(x.status||'')} | ${Number(x.usedHours||0)} / ${Number(x.budgetHours||0)} ساعت</span><div class="progress"><i style="width:${Math.min(100,Math.max(0,Number(x.progress||0)))}%"></i></div></div>`).join('')||'<div class="empty">پرونده‌ای ثبت نشده است.</div>'}
+function renderProjects(){let q=(pSearch?.value||'').toLowerCase();projectsBody.innerHTML=db.projects.filter(x=>Object.values(x).join(' ').toLowerCase().includes(q)).map(x=>`<tr><td><b>${esc(x.name)}</b><br><small>${esc(x.client)}</small></td><td>${esc(x.type)}</td><td>${esc(x.year)}</td><td>${esc(x.manager)}</td><td>${faDate(x.start)}</td><td class="${dueClass(x.due,x.status)}">${faDate(x.due,true)}</td><td>${esc(x.priority||'متوسط')}</td><td>${Number(x.usedHours||0)} / ${Number(x.budgetHours||0)}</td><td><span class="badge ${dueClass(x.due,x.status)}">${esc(x.status)}</span></td><td><div class="progress"><i style="width:${Math.min(100,Math.max(0,x.progress||0))}%"></i></div>${x.progress||0}%</td><td><button class="btn" onclick="openProject('${x.id}')">ویرایش</button> <button class="btn danger" onclick="del('projects','${x.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="11" class="empty">رکوردی نیست</td></tr>'}
+function renderTasks(){let q=(tSearch?.value||'').toLowerCase(),f=tFilter?.value||'';tasksBody.innerHTML=db.tasks.filter(x=>(!f||x.status===f)&&Object.values(x).join(' ').toLowerCase().includes(q)).map(x=>`<tr><td><b>${esc(x.title)}</b><br><small>${esc(x.category||'')} ${esc(x.notes||'')}</small></td><td>${esc(x.project)}</td><td>${esc(x.manager)}</td><td class="${dueClass(x.due,x.status)}">${faDate(x.due,true)}</td><td>${esc(x.priority)}</td><td>${Number(x.actualHours||0)} / ${Number(x.estimatedHours||0)}</td><td><span class="badge ${x.status==='تکمیل'?'done':x.due<new Date().toISOString()&&x.status!=='تکمیل'?'late':''}">${esc(x.status)}</span></td><td><div class="progress"><i style="width:${x.progress||0}%"></i></div>${x.progress||0}%</td><td><button class="btn" onclick="openTask('${x.id}')">ویرایش</button> <button class="btn danger" onclick="del('tasks','${x.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="9" class="empty">رکوردی نیست</td></tr>'}
+function renderLetters(){let q=(lSearch?.value||'').toLowerCase();lettersBody.innerHTML=db.letters.filter(x=>Object.values(x).join(' ').toLowerCase().includes(q)).map(x=>`<tr><td><b>${esc(x.no)}</b><br>${esc(x.subject)}</td><td>${esc(x.project)}</td><td>${faDate(x.requestDate)}</td><td>${faDate(x.due,true)}</td><td>${esc(x.recipient)}</td><td><span class="badge ${x.status==='پاسخ دریافت شد'?'done':x.due<new Date().toISOString()?'late':''}">${esc(x.status)}</span></td><td>${esc(x.notes)}</td><td><button class="btn" onclick="openLetter('${x.id}')">ویرایش</button> <button class="btn danger" onclick="del('letters','${x.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="8" class="empty">نامه‌ای ثبت نشده است.</td></tr>'}
+function renderDocs(){let q=(dSearch?.value||'').toLowerCase(),f=dFilter?.value||'';docsBody.innerHTML=db.docs.filter(x=>(!f||x.status===f)&&Object.values(x).join(' ').toLowerCase().includes(q)).map(x=>`<tr><td><b>${esc(x.document)}</b><br><small>${esc(x.category)}</small></td><td>${esc(x.project)}</td><td>${faDate(x.requestDate)}</td><td>${faDate(x.due,true)}</td><td><span class="badge ${x.status==='تحویل کامل'?'done':x.status==='ناقص'?'partial':x.status==='تحویل نشده'?'late':''}">${esc(x.status)}</span></td><td>${x.delivered||0} / ${x.required||1}</td><td>${x.incomplete||0}</td><td>${esc(x.notes)}</td><td><button class="btn" onclick="openDoc('${x.id}')">ویرایش</button> <button class="btn danger" onclick="del('docs','${x.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="9" class="empty">مدرکی ثبت نشده است.</td></tr>'}
+function renderStaff(){let q=(sSearch?.value||'').toLowerCase();staffBody.innerHTML=db.staff.filter(x=>Object.values(x).join(' ').toLowerCase().includes(q)).map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.role)}</td><td>${esc(x.phone)}</td><td>${db.projects.filter(p=>p.manager===x.name).length}</td><td>${db.tasks.filter(t=>t.manager===x.name&&t.status!=='تکمیل').length}</td><td><button class="btn" onclick="openStaff('${x.id}')">ویرایش</button> <button class="btn danger" onclick="del('staff','${x.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">پرسنلی ثبت نشده است.</td></tr>'}
+function renderReports(){let p=db.projects,t=db.tasks,d=db.docs,l=db.letters;reportText.innerHTML=`<div class="kpi"><span>پرونده‌ها</span><b>${p.length}</b></div><div class="kpi"><span>تسک‌ها</span><b>${t.length}</b></div><div class="kpi"><span>نامه‌های درخواست</span><b>${l.length}</b></div><div class="kpi"><span>مدارک درخواستی</span><b>${d.length}</b></div><div class="kpi"><span>مدارک تحویل کامل</span><b>${d.filter(x=>x.status==='تحویل کامل').length}</b></div><div class="kpi"><span>مدارک ناقص</span><b>${d.filter(x=>x.status==='ناقص').length}</b></div><div class="kpi"><span>مدارک تحویل نشده</span><b>${d.filter(x=>x.status==='تحویل نشده').length}</b></div>`}
+function fields(a){return '<div class="grid">'+a.map(f=>`<label class="field ${f.full?'full':''}"><span>${f.l}</span>${f.select?`<select class="input" name="${f.k}"><option value="">انتخاب کنید</option>${f.select.map(o=>`<option value="${esc(o)}" ${o===f.v?'selected':''}>${esc(o)}</option>`).join('')}</select>`:f.type==='textarea'?`<textarea class="input" name="${f.k}" rows="4">${esc(f.v)}</textarea>`:`<input class="input" name="${f.k}" type="${f.type||'text'} value="${esc(f.v)}">`}</label>`).join('')+'</div>'}
+function renderNotes(){let q=(nSearch?.value||'').trim().toLowerCase(),f=nFilter?.value||'';let rows=db.notes.filter(x=>{let hay=[x.title,x.text,x.tags,x.project,x.priority].join(' ').toLowerCase();return (!q||hay.includes(q))&&(!f||(f==='پین'?x.pinned:x.priority===f))}).sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));notesBody.innerHTML=rows.length?rows.map(x=>`<div class="noteCard ${x.pinned?'pinned':''}"><div style="display:flex;justify-content:space-between;gap:8px"><h3 style="margin:0">${esc(x.title||'بدون عنوان')}</h3><span>${x.pinned?'📌':''}</span></div><div class="noteBody">${x.text||'<span class="muted">بدون متن</span>'}</div><div class="noteMeta"><span class="badge">${esc(x.priority||'عادی')}</span>${x.tags?`<span class="badge">🏷️ ${esc(x.tags)}</span>`:''}${x.project?`<span class="badge">📁 ${esc(x.project)}</span>`:''}</div><div class="actions"><button class="btn" onclick="openNote('${x.id}')">ویرایش</button><button class="btn" onclick="togglePin('${x.id}')">${x.pinned?'برداشتن سنجاق':'📌 سنجاق'}</button><button class="btn danger" onclick="del('notes','${x.id}')">حذف</button></div></div>`).join(''):'<div class="panel" style="grid-column:1/-1;text-align:center">هنوز یادداشتی ثبت نشده است.</div>'}
+function execNote(cmd,val=null){document.execCommand(cmd,false,val);document.getElementById('noteEditor')?.focus()}
+function openNote(id){mode='notes';editId=id;let x=db.notes.find(a=>a.id===id)||{};modalTitle.textContent=id?'ویرایش یادداشت':'یادداشت جدید';form.innerHTML=`<div class="grid"><label class="field"><span>عنوان یادداشت</span><input class="input" name="title" value="${esc(x.title)}" required></label><label class="field"><span>اهمیت</span><select class="input" name="priority"><option ${x.priority==='عادی'?'selected':''}>عادی</option><option ${x.priority==='مهم'?'selected':''}>مهم</option><option ${x.priority==='ایده'?'selected':''}>ایده</option><option ${x.priority==='پیگیری'?'selected':''}>پیگیری</option></select></label><label class="field"><span>پرونده مرتبط</span><select class="input" name="project"><option value="">بدون ارتباط</option>${db.projects.map(p=>`<option ${p.name===x.project?'selected':''}>${esc(p.name)}</option>`).join('')}</select></label><label class="field"><span>برچسب‌ها</span><input class="input" name="tags" value="${esc(x.tags)}" placeholder="مثلاً بانک، مالیات، پیگیری"></label><label class="field"><span>سنجاق کردن</span><select class="input" name="pinned"><option value="false" ${!x.pinned?'selected':''}>خیر</option><option value="true" ${x.pinned?'selected':''}>بله</option></select></label><div class="field full"><span>متن یادداشت</span><div class="editorTools"><button type="button" onclick="execNote('bold')"><b>B</b></button><button type="button" onclick="execNote('italic')"><i>I</i></button><button type="button" onclick="execNote('underline')"><u>U</u></button><button type="button" onclick="execNote('strikeThrough')">S̶</button><button type="button" onclick="execNote('formatBlock','h2')">عنوان</button><button type="button" onclick="execNote('insertUnorderedList')">• لیست</button><button type="button" onclick="execNote('insertOrderedList')">1. لیست</button><button type="button" onclick="execNote('justifyRight')">راست</button><button type="button" onclick="execNote('justifyCenter')">وسط</button><button type="button" onclick="execNote('justifyLeft')">چپ</button><button type="button" onclick="execNote('createLink',prompt('آدرس لینک را وارد کنید:'))">🔗 لینک</button><button type="button" onclick="execNote('removeFormat')">پاک‌کردن قالب</button><button type="button" onclick="execNote('undo')">↶</button><button type="button" onclick="execNote('redo')">↷</button></div><div id="noteEditor" class="editor" contenteditable="true">${x.text||''}</div><input type="hidden" name="text" id="noteText"></div></div>`;modal.classList.add('show')}
+function togglePin(id){let x=db.notes.find(a=>a.id===id);if(x){x.pinned=!x.pinned;save();renderNotes()}}
+function openProject(id){mode='projects';editId=id;let x=db.projects.find(a=>a.id===id)||{};modalTitle.textContent=id?'ویرایش پرونده':'پرونده جدید';form.innerHTML=fields([{k:'name',l:'نام پرونده / پروژه',v:x.name},{k:'client',l:'شرکت مورد رسیدگی',v:x.client},{k:'type',l:'نوع حسابرسی',v:x.type,select:['حسابرسی صورت‌های مالی','حسابرسی داخلی','بررسی محدود','سایر']},{k:'year',l:'سال مالی',v:x.year||db.settings.year},{k:'manager',l:'مسئول پرونده',v:x.manager,select:db.staff.map(s=>s.name)},{k:'supervisor',l:'سرپرست / ناظر',v:x.supervisor},{k:'start',l:'تاریخ شروع',v:x.start,type:'datetime-local'},{k:'due',l:'مهلت نهایی',v:x.due,type:'datetime-local'},{k:'priority',l:'اولویت',v:x.priority||'متوسط',select:['کم','متوسط','زیاد','بحرانی']},{k:'budgetHours',l:'بودجه ساعت',v:x.budgetHours||0,type:'number'},{k:'usedHours',l:'ساعات مصرف‌شده',v:x.usedHours||0,type:'number'},{k:'risk',l:'سطح ریسک',v:x.risk||'متوسط',select:['کم','متوسط','زیاد','بحرانی']},{k:'status',l:'وضعیت',v:x.status,select:['برنامه‌ریزی','در حال انجام','اصلاحات','بررسی نهایی','تکمیل']},{k:'progress',l:'درصد پیشرفت',v:x.progress||0,type:'number'},{k:'notes',l:'توضیحات',v:x.notes,full:true,type:'textarea'}]);modal.classList.add('show')}
+function openTask(id){mode='tasks';editId=id;let x=db.tasks.find(a=>a.id===id)||{};modalTitle.textContent=id?'ویرایش تسک':'تسک جدید';form.innerHTML=fields([{k:'title',l:'عنوان تسک',v:x.title},{k:'project',l:'پرونده',v:x.project,select:db.projects.map(p=>p.name)},{k:'manager',l:'مسئول',v:x.manager,select:db.staff.map(s=>s.name)},{k:'category',l:'دسته‌بندی کار',v:x.category,select:['برنامه‌ریزی','حسابداری','بانک','دریافتنی‌ها','پرداختنی‌ها','موجودی','دارایی ثابت','مالیات','حقوق و دستمزد','صورت‌های مالی','کنترل داخلی','گزارش','سایر']},{k:'due',l:'مهلت تاریخ و ساعت',v:x.due,type:'datetime-local'},{k:'estimatedHours',l:'ساعات برآوردی',v:x.estimatedHours||0,type:'number'},{k:'actualHours',l:'ساعات واقعی',v:x.actualHours||0,type:'number'},{k:'priority',l:'اولویت',v:x.priority,select:['کم','متوسط','زیاد','فوری']},{k:'status',l:'وضعیت',v:x.status||'باز',select:['باز','در حال انجام','تکمیل','لغوشده']},{k:'progress',l:'درصد پیشرفت',v:x.progress||0,type:'number'},{k:'notes',l:'توضیحات / نتیجه',v:x.notes,full:true,type:'textarea'}]);modal.classList.add('show')}
+function openLetter(id){mode='letters';editId=id;let x=db.letters.find(a=>a.id===id)||{};modalTitle.textContent=id?'ویرایش نامه':'نامه جدید';form.innerHTML=fields([{k:'no',l:'شماره نامه',v:x.no},{k:'subject',l:'موضوع / درخواست',v:x.subject},{k:'project',l:'پرونده',v:x.project,select:db.projects.map(p=>p.name)},{k:'requestDate',l:'تاریخ درخواست',v:x.requestDate,type:'datetime-local'},{k:'due',l:'مهلت پاسخ',v:x.due,type:'datetime-local'},{k:'recipient',l:'گیرنده / مخاطب',v:x.recipient},{k:'status',l:'وضعیت',v:x.status||'ارسال شد',select:['پیش‌نویس','ارسال شد','پیگیری شد','پاسخ دریافت شد','بسته شد']},{k:'notes',l:'توضیحات',v:x.notes,full:true,type:'textarea'}]);modal.classList.add('show')}
+function openDoc(id){mode='docs';editId=id;let x=db.docs.find(a=>a.id===id)||{};modalTitle.textContent=id?'ویرایش مدرک':'مدرک جدید';form.innerHTML=fields([{k:'document',l:'نام مدرک',v:x.document},{k:'category',l:'دسته‌بندی',v:x.category,select:['بانکی','حسابداری','مالیاتی','قراردادی','حقوق و دستمزد','دارایی ثابت','سرمایه‌گذاری','سایر']},{k:'project',l:'پرونده',v:x.project,select:db.projects.map(p=>p.name)},{k:'requestDate',l:'تاریخ درخواست',v:x.requestDate,type:'datetime-local'},{k:'due',l:'مهلت تحویل',v:x.due,type:'datetime-local'},{k:'required',l:'تعداد مورد درخواست',v:x.required||1,type:'number'},{k:'delivered',l:'تعداد تحویل‌شده',v:x.delivered||0,type:'number'},{k:'incomplete',l:'تعداد ناقص',v:x.incomplete||0,type:'number'},{k:'status',l:'وضعیت',v:x.status||'تحویل نشده',select:['تحویل کامل','ناقص','تحویل نشده','در انتظار بررسی']},{k:'notes',l:'توضیحات / موارد ناقص',v:x.notes,full:true,type:'textarea'}]);modal.classList.add('show')}
+function openStaff(id){mode='staff';editId=id;let x=db.staff.find(a=>a.id===id)||{};modalTitle.textContent=id?'ویرایش پرسنل':'پرسنل جدید';form.innerHTML=fields([{k:'name',l:'نام و نام خانوادگی',v:x.name},{k:'role',l:'سمت',v:x.role},{k:'phone',l:'تلفن',v:x.phone},{k:'notes',l:'توضیحات',v:x.notes,full:true,type:'textarea'}]);modal.classList.add('show')}
+function submitForm(){if(mode==='notes'){let ed=document.getElementById('noteEditor');if(ed)document.getElementById('noteText').value=ed.innerHTML}let data=Object.fromEntries(new FormData(form).entries());['progress','required','delivered','incomplete','budgetHours','usedHours','estimatedHours','actualHours'].forEach(k=>{if(k in data)data[k]=Number(data[k]||0)});if(editId){let i=db[mode].findIndex(x=>x.id===editId);db[mode][i]={...db[mode][i],...data}}else{data.id=uid();db[mode].push(data)}save();closeModal();render()}
+function closeModal(){modal.classList.remove('show');editId=null}function del(type,id){if(confirm('این رکورد حذف شود؟')){db[type]=db[type].filter(x=>x.id!==id);save();render()}}
+function exportCSV(type){let rows=db[type],headers=rows.length?Object.keys(rows[0]):[];let csv='\ufeff'+[headers,...rows.map(r=>headers.map(h=>String(r[h]??'').replaceAll('"','""')))].map(r=>r.map(v=>'"'+v+'"').join(',')).join('\n');download(csv,type+'_گزارش.csv','text/csv;charset=utf-8')}
+function exportAll(){['projects','tasks','letters','docs','staff'].forEach((x,i)=>setTimeout(()=>exportCSV(x),i*250))}function download(c,n,t){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}function backup(){download(JSON.stringify(db,null,2),'پشتیبان_داشبورد_حسابرسی.json','application/json;charset=utf-8')}function restoreFile(){restoreInput.click()}function doRestore(input){let f=input.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);db={...base,...x,settings:{...base.settings,...(x.settings||{})},notes:x.notes||[]};save();render();alert('بازیابی با موفقیت انجام شد.')}catch(e){alert('فایل پشتیبان معتبر نیست.')}};r.readAsText(f)}function saveSettings(){db.settings.company=companyName.value||'شرکت حسابرسی';db.settings.year=defaultYear.value||'1405';db.settings.alertDays=Number(alertDays.value||7);save();render();alert('تنظیمات ذخیره شد')}function resetData(){if(confirm('همه اطلاعات حذف شود؟ این کار قابل بازگشت نیست.')){db=structuredClone(base);save();render()}}
+render();
+</script><script>
+function aiNorm(x){return String(x||'').toLowerCase().replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/‌/g,' ').replace(/[؟?!،؛:]/g,' ').replace(/\s+/g,' ').trim()}
+function aiDone(x){return ['تکمیل','انجام شد','بسته','مختومه'].some(w=>String(x||'').includes(w))}
+function aiName(x){return x?.name||x?.title||x?.project||x?.client||'بدون عنوان'}
+function aiDate(x){return x?.due||x?.deadline||x?.endDate||x?.date||x?.deadlineDate||''}
+function aiLate(){const now=new Date();return (db.tasks||[]).filter(x=>{const d=aiDate(x);if(!d||aiDone(x.status))return false;const dt=new Date(d);return !isNaN(dt)&&dt<now})}
+function aiContext(){return {projects:db.projects||[],tasks:db.tasks||[],letters:db.letters||[],docs:db.docs||[],staff:db.staff||[],notes:db.notes||[]}}
+function aiAnswer(q){
+ const n=aiNorm(q), d=aiContext(), p=d.projects,t=d.tasks,l=d.letters,docs=d.docs,st=d.staff,notes=d.notes;
+ if(/^(سلام|درود|سلام وقت بخیر|وقت بخیر)/.test(n)) return 'سلام 👋 آماده‌ام. اطلاعات پرونده‌ها، تسک‌ها، نامه‌ها، مدارک، پرسنل و یادداشت‌های همین داشبورد را بررسی می‌کنم.';
+ if(/وضعیت کلی|خلاصه مدیریتی|گزارش کلی/.test(n)) return `📊 خلاصه مدیریتی\n\n• پرونده‌ها: ${p.length} (فعال: ${p.filter(x=>!aiDone(x.status)).length})\n• تسک‌ها: ${t.length} (باز: ${t.filter(x=>!aiDone(x.status)).length})\n• تسک‌های عقب‌افتاده: ${aiLate().length}\n• مدارک: ${docs.length}\n• نامه‌ها: ${l.length}\n• پرسنل: ${st.length}\n• یادداشت‌ها: ${notes.length}`;
+ if(/(چند|تعداد|کل).*(پرونده|پروژه)/.test(n)) return `تعداد پرونده‌های ثبت‌شده: ${p.length}\nپرونده‌های فعال: ${p.filter(x=>!aiDone(x.status)).length}`;
+ if(/پرونده.*فعال|فعال.*پرونده/.test(n)) return p.filter(x=>!aiDone(x.status)).slice(0,30).map((x,i)=>`${i+1}. ${aiName(x)}${x.status?' — '+x.status:''}`).join('\n') || 'پرونده فعالی ثبت نشده است.';
+ if(/(تسک|وظیفه).*(عقب|تاخیر|دیر|سررسید)/.test(n)) {const a=aiLate(); return `تعداد تسک‌های عقب‌افتاده: ${a.length}\n\n`+(a.slice(0,30).map((x,i)=>`${i+1}. ${aiName(x)}${aiDate(x)?' — '+aiDate(x):''}`).join('\n')||'تسک عقب‌افتاده‌ای پیدا نشد.');}
+ if(/(چند|تعداد|کل).*(تسک|وظیفه)/.test(n)) return `کل تسک‌ها: ${t.length}\nتسک‌های باز: ${t.filter(x=>!aiDone(x.status)).length}`;
+ if(/مدرک|مدارک/.test(n) && /ناقص|کمبود|تحویل نشده|در انتظار/.test(n)){const a=docs.filter(x=>/ناقص|تحویل نشده|در انتظار/i.test(String(x.status||'')));return `مدارک نیازمند پیگیری: ${a.length}\n\n`+(a.slice(0,30).map((x,i)=>`${i+1}. ${aiName(x)} — ${x.status||'نامشخص'}`).join('\n')||'موردی پیدا نشد.');}
+ if(/(چند|تعداد|کل).*(مدرک|مدارک)/.test(n)) return `کل مدارک ثبت‌شده: ${docs.length}`;
+ if(/نامه/.test(n)) return `کل نامه‌ها: ${l.length}\nنامه‌های باز/در انتظار: ${l.filter(x=>/انتظار|باز/i.test(String(x.status||''))).length}`;
+ if(/پرسنل|کارمند|همکار/.test(n)) return `تعداد پرسنل: ${st.length}\n\n`+(st.slice(0,30).map((x,i)=>`${i+1}. ${aiName(x)}${x.role?' — '+x.role:''}`).join('\n')||'پرسنلی ثبت نشده است.');
+ if(/یادداشت/.test(n)) return `تعداد یادداشت‌ها: ${notes.length}\nمهم/پیگیری: ${notes.filter(x=>/مهم|پیگیری/i.test(String(x.priority||''))).length}`;
+ if(/حسابرس|حسابرسی|کنترل داخلی|کنترل حساب|بند گزارش/.test(n)) return 'برای حسابرسی می‌توانم راهنمای داخلی بدهم: هدف کنترل → ریسک → کنترل کلیدی → نمونه‌گیری → بررسی شواهد → ثبت استثنا → مستندسازی. موضوع دقیق را بنویس تا کنترل و تست پیشنهادی بدهم.';
+ if(/اکسل|فرمول|vba|power query/.test(n)) return 'برای Excel می‌توانم فرمول، کنترل داده، ساخت داشبورد، VBA و Power Query را راهنمایی کنم. نمونه یا مسئله را بنویس.';
+ if(/کمک|چه کار|چی میتونی|چه میتونی/.test(n)) return 'من بدون اینترنت کار می‌کنم و این کارها را انجام می‌دهم:\n• شمارش و تحلیل پرونده‌ها\n• پیدا کردن تسک‌های عقب‌افتاده\n• بررسی مدارک و نامه‌ها\n• خلاصه مدیریتی\n• تحلیل اطلاعات پرسنل و یادداشت‌ها\n• راهنمایی حسابرسی و Excel';
+ return 'این سؤال را می‌بینم، اما چون این نسخه کاملاً بدون API و آفلاین است، فقط می‌تواند بر اساس اطلاعات داشبورد و قواعد داخلی پاسخ بدهد. برای سؤال‌های عمومی و آزاد مثل ChatGPT باید یک مدل هوش مصنوعی آنلاین به آن متصل شود. اگر سؤال درباره اطلاعات داشبورد است، آن را دقیق‌تر بپرس؛ مثلاً «کدام تسک‌ها عقب افتاده‌اند؟»';
+}
+function aiAsk(q){document.getElementById('aiInput').value=q;aiSend()}
+function aiAppend(role,text){const box=document.getElementById('aiChat'),el=document.createElement('div');el.className='aiMsg '+(role==='user'?'user':'bot');el.innerHTML='<b>'+(role==='user'?'شما':'دستیار')+':</b> '+String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');box.appendChild(el);box.scrollTop=box.scrollHeight}
+function aiSend(){const input=document.getElementById('aiInput'),q=input.value.trim();if(!q)return;input.value='';aiAppend('user',q);setTimeout(()=>aiAppend('bot',aiAnswer(q)),80)}
+function aiClear(){document.getElementById('aiChat').innerHTML='<div class="aiMsg bot"><b>دستیار:</b> گفتگو پاک شد. سؤال جدیدت را بپرس.</div>'}
+\n/* فقط منطق هشدار هوشمند — بدون تغییر در سایر بخش‌های داشبورد */\nlet smartAlertMode='all';\nfunction smartAlertDays(v){if(!v)return null;let d=new Date(v);if(isNaN(d))return null;return Math.ceil((d-new Date())/86400000)}\nfunction smartAlertProject(x){let key=String(x.project||x.projectName||x.file||'').trim();return db.projects.find(p=>String(p.id)===key||String(p.name||'').trim()===key)||null}\nfunction smartAlertAdd(a,type,text,project){a.push({type,text,project})}\nfunction smartAlertsData(){let a=[];\n db.projects.forEach(p=>{let d=smartAlertDays(p.due),pr=Number(p.progress||0),b=Number(p.budgetHours||0),u=Number(p.usedHours||0);if(d!==null&&d<0&&p.status!=='تکمیل')smartAlertAdd(a,'critical','مهلت پرونده گذشته است: '+(p.name||'بدون نام'),p);else if(d!==null&&d<=3&&p.status!=='تکمیل')smartAlertAdd(a,'warn','مهلت پرونده نزدیک است: '+(p.name||'بدون نام'),p);else if(d!==null&&d<=7&&p.status!=='تکمیل')smartAlertAdd(a,'info','مهلت پرونده در ۷ روز آینده است: '+(p.name||'بدون نام'),p);if(d!==null&&d<=7&&d>=0&&pr<40&&p.status!=='تکمیل')smartAlertAdd(a,'critical','پیشرفت پرونده پایین و مهلت نزدیک است: '+(p.name||'بدون نام'),p);if(b>0&&u>b)smartAlertAdd(a,'critical','ساعات مصرف‌شده از بودجه بیشتر شده: '+(p.name||'بدون نام'),p)});\n db.tasks.forEach(x=>{let d=smartAlertDays(x.due),p=smartAlertProject(x);if(d!==null&&d<0&&x.status!=='تکمیل'&&x.status!=='لغوشده')smartAlertAdd(a,'critical','تسک عقب‌افتاده: '+(x.title||'بدون عنوان'),p);else if(d!==null&&d<=2&&x.status!=='تکمیل'&&x.status!=='لغوشده')smartAlertAdd(a,'warn','مهلت تسک نزدیک است: '+(x.title||'بدون عنوان'),p)});\n db.docs.forEach(x=>{let p=smartAlertProject(x);if(x.status==='تحویل نشده')smartAlertAdd(a,'critical','مدرک تحویل نشده: '+(x.document||'بدون عنوان'),p);else if(x.status==='ناقص')smartAlertAdd(a,'warn','مدرک ناقص است: '+(x.document||'بدون عنوان'),p)});\n db.letters.forEach(x=>{let d=smartAlertDays(x.due),p=smartAlertProject(x);if(d!==null&&d<0&&x.status!=='پاسخ دریافت شد')smartAlertAdd(a,'critical','نامه از مهلت گذشته: '+(x.subject||x.no||'بدون عنوان'),p);else if(d!==null&&d<=3&&x.status!=='پاسخ دریافت شد')smartAlertAdd(a,'warn','مهلت نامه نزدیک است: '+(x.subject||x.no||'بدون عنوان'),p);else if(d===null)smartAlertAdd(a,'info','نامه نیاز به پیگیری دارد: '+(x.subject||x.no||'بدون عنوان'),p)});return a}\nfunction renderSmartAlerts(){let all=smartAlertsData();let c=all.filter(x=>x.type==='critical').length,w=all.filter(x=>x.type==='warn').length,i=all.filter(x=>x.type==='info').length;document.getElementById('smartCriticalCount').textContent='بحرانی: '+c;document.getElementById('smartWarnCount').textContent='هشدار: '+w;document.getElementById('smartInfoCount').textContent='اطلاع: '+i;let list=document.getElementById('smartAlertsList'),rows=all.filter(x=>smartAlertMode==='all'||x.type===smartAlertMode);if(!rows.length){list.innerHTML='<div class="smartAlertEmpty">موردی برای نمایش وجود ندارد.</div>';return}list.innerHTML=rows.map((x,n)=>{let p=x.project;let btn=p?'<button class="smartAlertBtn" onclick="openSmartProject(\''+String(p.id).replace(/'/g,"\\'")+'\')">مشاهده پرونده ←</button>':'';return '<div class="smartAlertItem '+x.type+'"><div class="smartAlertText">'+x.text+'</div>'+btn+'</div>'}).join('')}\nfunction smartAlertFilter(mode,btn){smartAlertMode=mode;document.querySelectorAll('.smartAlertFilters button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderSmartAlerts()}\nfunction openSmartProject(id){let b=document.querySelector('#smartAlertsPanel');if(typeof tab==='function')tab('projects',b);setTimeout(()=>{if(typeof openProject==='function')openProject(id)},80)}\nsetTimeout(renderSmartAlerts,0);setInterval(renderSmartAlerts,60000);\n</script><script id="portable-mode-support">
+(function(){
+  window.__PORTABLE_DB__ = window.__PORTABLE_DB__ || null;
+  if(window.__PORTABLE_DB__ && typeof db!=='undefined'){
+    try{ db=JSON.parse(JSON.stringify(window.__PORTABLE_DB__)); save(); render(); if(typeof renderSmartAlerts==='function') renderSmartAlerts(); }catch(e){console.error(e)}
+  }
+  window.exportPortableDashboard=function(){
+    try{
+      if(typeof db==='undefined') throw new Error('Database unavailable');
+      var data=JSON.stringify(db).replace(/</g,'\\u003c');
+      var marker='window.__PORTABLE_DB__ = window.__PORTABLE_DB__ || null;';
+      var payload='<script id="portable-data">window.__PORTABLE_DB__='+data+';<\\/script>';
+      var html='<!doctype html>\\n'+document.documentElement.outerHTML.replace(marker,payload+'\\n'+marker);
+      var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+      var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='داشبورد_حسابرسی_نسخه_قابل_حمل.html';
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href)},1500);
+    }catch(e){alert('خطا در ذخیره نسخه قابل حمل: '+e.message)}
+  };
+  window.addEventListener('DOMContentLoaded',function(){
+    var b=document.createElement('button'); b.className='btn'; b.type='button'; b.textContent='💾 ذخیره نسخه روی فلش'; b.title='ذخیره تمام اطلاعات داخل یک فایل HTML قابل انتقال';
+    b.onclick=window.exportPortableDashboard;
+    var target=document.querySelector('header'); if(target) target.appendChild(b);
+  });
+})();
+</script>
+<script id="audit-tools-module">
+(function(){
+window.toggleToolsMenu=function(){let x=document.getElementById('toolsSub'),a=document.getElementById('toolsArrow');x.classList.toggle('open');a.textContent=x.classList.contains('open')?'⌃':'⌄'};
+window.openTool=function(id){if(typeof tab==='function')tab('tools',null);setTimeout(()=>showTool(id,document.getElementById('toolTab-'+id)),30);closeMenu();};
+window.showTool=function(id,btn){document.querySelectorAll('.toolsPanel').forEach(x=>x.classList.remove('active'));let p=document.getElementById('tool-'+id);if(p)p.classList.add('active');document.querySelectorAll('.toolTabs button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');};
+let calcMemory=0,calcHist=[];
+function normDigits(s){return String(s||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d))}
+function fmt(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:12})}
+window.calcInput=function(v){let d=document.getElementById('calcDisplay');d.value+=v};window.calcClear=function(){document.getElementById('calcDisplay').value=''};window.calcBack=function(){let d=document.getElementById('calcDisplay');d.value=d.value.slice(0,-1)};
+window.calcEval=function(){let d=document.getElementById('calcDisplay'),raw=normDigits(d.value).replace(/,/g,'').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-');if(!raw)return;raw=raw.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');if(!/^[0-9+\-*/().%\s]+$/.test(raw)){alert('عبارت نامعتبر است');return}try{let r=Function('"use strict";return ('+raw+')')();if(!Number.isFinite(r))throw Error();calcHist.unshift(raw+' = '+fmt(r));calcHist=calcHist.slice(0,30);d.value=String(r);renderCalcHistory()}catch(e){alert('عبارت قابل محاسبه نیست')}};
+window.calcMem=function(op){let d=document.getElementById('calcDisplay'),v=parseFloat(normDigits(d.value));if(op==='MC')calcMemory=0;else if(op==='MR')d.value=String(calcMemory);else if(op==='M+'&&Number.isFinite(v))calcMemory+=v;else if(op==='M-'&&Number.isFinite(v))calcMemory-=v};function renderCalcHistory(){let x=document.getElementById('calcHistory');x.innerHTML=calcHist.length?calcHist.map((h,i)=>'<div onclick="document.getElementById(\'calcDisplay\').value='+JSON.stringify(h.split(' = ')[1])+'">'+h+'</div>').join(''):'<div class="mini">هنوز محاسبه‌ای انجام نشده است.</div>'}
+function nums(txt){return String(txt||'').split(/[\n,;\t ]+/).map(x=>normDigits(x).replace(/,/g,'').trim()).filter(Boolean).map(Number).filter(Number.isFinite)}
+window.runRecon=function(){let a=nums(document.getElementById('reconA').value),b=nums(document.getElementById('reconB').value),tol=Math.abs(Number(document.getElementById('reconTol').value)||0),n=Math.max(a.length,b.length),diff=[];for(let i=0;i<n;i++){let x=a[i]??0,y=b[i]??0,d=x-y;if(Math.abs(d)>tol)diff.push([i+1,x,y,d])}let sa=a.reduce((x,y)=>x+y,0),sb=b.reduce((x,y)=>x+y,0),td=sa-sb;document.getElementById('reconResult').innerHTML='<div class="toolResult '+(Math.abs(td)<=tol&&diff.length===0?'toolSuccess':'toolDanger')+'"><b>نتیجه:</b> '+(diff.length?'مغایرت دارد':'بدون مغایرت')+'<br>تعداد لیست اول: '+a.length+' | لیست دوم: '+b.length+'<br>جمع اول: <b>'+fmt(sa)+'</b> | جمع دوم: <b>'+fmt(sb)+'</b> | اختلاف جمع: <b>'+fmt(td)+'</b>'+(diff.length?'<hr><b>ردیف‌های دارای مغایرت:</b>'+diff.map(r=>'<div class="diffRow"><span>ردیف '+r[0]+'</span><span>'+fmt(r[1])+' ↔ '+fmt(r[2])+'</span><b>'+fmt(r[3])+'</b></div>').join(''):'')+'</div>'};window.clearRecon=function(){['reconA','reconB','reconResult'].forEach(id=>document.getElementById(id).value!==undefined?document.getElementById(id).value='':document.getElementById(id).innerHTML='')};
+function gregorianToJalali(gy,gm,gd){let gdm=[0,31,59,90,120,151,181,212,243,273,304,334];let gy2=gm>2?gy+1:gy;let days=355666+365*gy+Math.floor((gy2+3)/4)-Math.floor((gy2+99)/100)+Math.floor((gy2+399)/400)+gd+gdm[gm-1];let jy=-1595+33*Math.floor(days/12053);days%=12053;jy+=4*Math.floor(days/1461);days%=1461;if(days>365){jy+=Math.floor((days-1)/365);days=(days-1)%365}let jm=days<186?1+Math.floor(days/31):7+Math.floor((days-186)/30);let jd=1+(days<186?days%31:(days-186)%30);return [jy,jm,jd]}
+function jalaliToGregorian(jy,jm,jd){let jy2=jy+1595,days=-355668+365*jy2+Math.floor(jy2/33)*8+Math.floor(((jy2%33)+3)/4)+jd+(jm<7?(jm-1)*31:(jm-7)*30+186);let gy=400*Math.floor(days/146097);days%=146097;if(days>36524){gy+=100*Math.floor(--days/36524);days%=36524;if(days>=365)days++}gy+=4*Math.floor(days/1461);days%=1461;if(days>365){gy+=Math.floor((days-1)/365);days=(days-1)%365}let gd=days+1,leap=((gy%4===0&&gy%100!==0)||gy%400===0);let gdm=[0,31,leap?29:28,31,30,31,30,31,31,30,31,30,31],gm=1;while(gd>gdm[gm]){gd-=gdm[gm];gm++}return [gy,gm,gd]}
+function validDateParts(s){let m=normDigits(s).trim().match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})$/);return m?[+m[1],+m[2],+m[3]]:null}function pad(a){return a.map(x=>String(x).padStart(2,'0')).join('-')}
+window.gToJ=function(){let a=validDateParts(document.getElementById('gDate').value);if(!a)return document.getElementById('gToJResult').textContent='فرمت صحیح: YYYY-MM-DD';try{let j=gregorianToJalali(...a);document.getElementById('gToJResult').innerHTML='<b>'+pad(j)+'</b> (شمسی)';}catch(e){document.getElementById('gToJResult').textContent='تاریخ نامعتبر است'}};window.jToG=function(){let a=validDateParts(document.getElementById('jDate').value);if(!a)return document.getElementById('jToGResult').textContent='فرمت صحیح: YYYY-MM-DD';try{let g=jalaliToGregorian(...a);document.getElementById('jToGResult').innerHTML='<b>'+pad(g)+'</b> (میلادی)';}catch(e){document.getElementById('jToGResult').textContent='تاریخ نامعتبر است'}};
+function dateObj(s,cal){let a=validDateParts(s);if(!a)throw Error('فرمت تاریخ صحیح نیست');let g=cal==='j'?jalaliToGregorian(...a):a;let d=new Date(g[0],g[1]-1,g[2]);if(d.getFullYear()!==g[0]||d.getMonth()!==g[1]-1||d.getDate()!==g[2])throw Error('تاریخ نامعتبر است');return d}
+window.calcDateDiff=function(){try{let cal=document.getElementById('diffCal').value,a=dateObj(document.getElementById('diffA').value,cal),b=dateObj(document.getElementById('diffB').value,cal),start=a<=b?a:b,end=a<=b?b:a,days=Math.round((end-start)/86400000),work=document.getElementById('diffWork').value==='yes',wd=0;for(let d=new Date(start);d<end;d.setDate(d.getDate()+1)){if(!work||d.getDay()!==5)wd++}let months=Math.floor(days/30),weeks=Math.floor(days/7);document.getElementById('diffResult').innerHTML='<b>'+days.toLocaleString('fa-IR')+' روز</b><br>'+weeks.toLocaleString('fa-IR')+' هفته و '+(days%7).toLocaleString('fa-IR')+' روز<br>تقریباً '+months.toLocaleString('fa-IR')+' ماه<br>'+(work?'روز کاری با فرض جمعه تعطیل: <b>'+wd.toLocaleString('fa-IR')+'</b>':'');}catch(e){document.getElementById('diffResult').textContent='خطا: '+e.message}};
+window.calcPercentChange=function(){let o=Number(document.getElementById('pctOld').value),n=Number(document.getElementById('pctNew').value);if(!Number.isFinite(o)||!Number.isFinite(n)||o===0)return document.getElementById('pctResult').textContent='مقادیر معتبر وارد کن (مقدار قبلی نباید صفر باشد).';let d=n-o,p=d/o*100;document.getElementById('pctResult').innerHTML='تغییر مبلغ: <b>'+fmt(d)+'</b><br>درصد تغییر: <b>'+fmt(p)+'%</b><br>نوع تغییر: <b>'+(d>0?'افزایش':d<0?'کاهش':'بدون تغییر')+'</b>'};window.calcPercentAmount=function(){let b=Number(document.getElementById('pctBase').value),r=Number(document.getElementById('pctRate').value);if(!Number.isFinite(b)||!Number.isFinite(r))return;let x=b*r/100;document.getElementById('pctAmountResult').innerHTML='<b>'+fmt(x)+'</b><br><span class="mini">'+fmt(r)+'٪ از '+fmt(b)+'</span>'};window.calcSum=function(){let a=nums(document.getElementById('sumInput').value),s=a.reduce((x,y)=>x+y,0);document.getElementById('sumResult').innerHTML='تعداد اعداد: <b>'+a.length.toLocaleString('fa-IR')+'</b><br>جمع کل: <b>'+fmt(s)+'</b><br>میانگین: <b>'+(a.length?fmt(s/a.length):'0')+'</b>'};
+})();
+</script>
+<script id="audit-pro-tools-module">(function(){
+const faDigits=s=>String(s??'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+function nval(id){let v=faDigits(document.getElementById(id)?.value||'').replace(/,/g,'').trim();return Number(v)||0}
+window.convertMoney=function(mode){let v=nval('moneyValue');if(!v&&String(document.getElementById('moneyValue').value).trim()!=='0')return;let r=mode==='r2t'?v/10:v*10;document.getElementById('moneyResult').innerHTML='<b>'+r.toLocaleString('en-US')+'</b> '+(mode==='r2t'?'تومان':'ریال')+'<br><span class="mini">'+(mode==='r2t'?v.toLocaleString('en-US')+' ریال':' '+v.toLocaleString('en-US')+' تومان')+'</span>'};
+window.formatMoneyTool=function(){let v=nval('moneyFmt');document.getElementById('moneyFmtResult').innerHTML='<b>'+v.toLocaleString('en-US')+'</b>'};
+const ones=['','یک','دو','سه','چهار','پنج','شش','هفت','هشت','نه','ده','یازده','دوازده','سیزده','چهارده','پانزده','شانزده','هفده','هجده','نوزده'];const tens=['','','بیست','سی','چهل','پنجاه','شصت','هفتاد','هشتاد','نود'];const hundreds=['','صد','دویست','سیصد','چهارصد','پانصد','ششصد','هفتصد','هشتصد','نهصد'];const scales=['','هزار','میلیون','میلیارد','تریلیون','کوادریلیون'];function three(n){let a=[];if(Math.floor(n/100))a.push(hundreds[Math.floor(n/100)]);let r=n%100;if(r){if(r<20)a.push(ones[r]);else{a.push(tens[Math.floor(r/10)]);if(r%10)a.push(ones[r%10])}}return a.join(' و ')}function words(n){n=Math.floor(Math.abs(n));if(n===0)return'صفر';let out=[],i=0;while(n){let x=n%1000;if(x)out.unshift(three(x)+(scales[i]?' '+scales[i]:''));n=Math.floor(n/1000);i++}return out.join(' و ')}window.amountToWordsTool=function(){let raw=faDigits(document.getElementById('wordsValue').value).replace(/,/g,'').trim(),v=Number(raw);if(!Number.isSafeInteger(v)||v<0)return document.getElementById('wordsResult').textContent='یک عدد صحیح معتبر وارد کن.';document.getElementById('wordsResult').innerHTML='<b>'+words(v)+'</b> '+document.getElementById('wordsUnit').value};
+window.runAdvancedRecon=function(){let parse=id=>String(document.getElementById(id).value||'').split(/[\n,;\t ]+/).map(faDigits).map(x=>Number(x.replace(/,/g,''))).filter(Number.isFinite),a=parse('advA'),b=parse('advB'),tol=Math.abs(nval('advTol')),used=new Set(),matches=[],onlyA=[],onlyB=[];a.forEach((x,i)=>{let j=b.findIndex((y,k)=>!used.has(k)&&Math.abs(x-y)<=tol);if(j>=0){used.add(j);matches.push([i+1,j+1,x,b[j],x-b[j]])}else onlyA.push([i+1,x])});b.forEach((x,j)=>{if(!used.has(j))onlyB.push([j+1,x])});let exact=matches.filter(x=>x[4]===0),diff=matches.filter(x=>x[4]!==0);document.getElementById('advResult').innerHTML='<b>نتیجه تطبیق</b><br>تعداد A: '+a.length+' | تعداد B: '+b.length+'<br>تطبیق دقیق: <b>'+exact.length+'</b> | تطبیق با اختلاف: <b>'+diff.length+'</b> | فقط A: <b>'+onlyA.length+'</b> | فقط B: <b>'+onlyB.length+'</b>'+ (diff.length?'<hr><b>موارد با اختلاف:</b>'+diff.map(x=>'<div class="diffRow"><span>A ردیف '+x[0]+'</span><span>'+x[2].toLocaleString()+' ↔ '+x[3].toLocaleString()+'</span><b>'+x[4].toLocaleString()+'</b></div>').join(''):'')+(onlyA.length?'<hr><b>فقط در A:</b> '+onlyA.map(x=>x[1].toLocaleString()).join('، '):'')+(onlyB.length?'<hr><b>فقط در B:</b> '+onlyB.map(x=>x[1].toLocaleString()).join('، '):'')};
+window.runTrialBalance=function(){let rows=String(document.getElementById('tbInput').value||'').split(/\n+/).map(x=>x.split('|').map(y=>y.trim())).filter(x=>x.length>=3),d=rows.reduce((s,r)=>s+(Number(faDigits(r[1]).replace(/,/g,''))||0),0),c=rows.reduce((s,r)=>s+(Number(faDigits(r[2]).replace(/,/g,''))||0),0),diff=d-c;document.getElementById('tbResult').className='toolResult '+(Math.abs(diff)<0.005?'toolSuccess':'toolDanger');document.getElementById('tbResult').innerHTML='جمع بدهکار: <b>'+d.toLocaleString('en-US')+'</b><br>جمع بستانکار: <b>'+c.toLocaleString('en-US')+'</b><br>اختلاف: <b>'+diff.toLocaleString('en-US')+'</b><br><b>'+ (Math.abs(diff)<0.005?'✅ تراز است.':'⚠️ تراز نیست.')+'</b>'};
+function seeded(seed){let x=(seed||Date.now())%2147483647;return()=>{x=x*16807%2147483647;return(x-1)/2147483646}}window.runSampling=function(){let N=Math.floor(nval('sampleN')),S=Math.floor(nval('sampleSize')),seed=Math.floor(nval('sampleSeed'))||Date.now(),method=document.getElementById('sampleMethod').value;if(N<1||S<1||S>N)return document.getElementById('sampleResult').textContent='تعداد جامعه و نمونه را صحیح وارد کن.';let rnd=seeded(seed),out=[];if(method==='systematic'){let step=N/S,start=Math.floor(rnd()*step)+1;for(let i=0;i<S;i++)out.push(Math.min(N,Math.floor(start+i*step)))}else{let set=new Set();while(set.size<S)set.add(Math.floor(rnd()*N)+1);out=[...set].sort((a,b)=>a-b)}document.getElementById('sampleResult').innerHTML='بذر: <b>'+seed+'</b><br>نمونه‌های انتخاب‌شده ('+out.length+'): <div style="margin-top:8px;line-height:2">'+out.join('، ')+'</div>'};
+window.runDepreciation=function(){let cost=nval('depCost'),salv=Math.max(0,nval('depSalvage')),life=Math.max(1,Math.floor(nval('depLife'))),used=Math.max(0,nval('depUsed')),method=document.getElementById('depMethod').value,base=Math.max(0,cost-salv),annual,acc;if(method==='straight'){annual=base/life;acc=Math.min(base,annual*used)}else{let rate=2/life,book=cost;for(let i=0;i<used;i++){let exp=Math.min(Math.max(0,book-salv),book*rate);book-=exp}acc=cost-book;annual=Math.min(Math.max(0,book-salv),book*(2/life))}let book=cost-acc;document.getElementById('depResult').innerHTML='استهلاک دوره: <b>'+annual.toLocaleString('en-US',{maximumFractionDigits:2})+'</b><br>استهلاک انباشته: <b>'+acc.toLocaleString('en-US',{maximumFractionDigits:2})+'</b><br>ارزش دفتری: <b>'+book.toLocaleString('en-US',{maximumFractionDigits:2})+'</b>'};
+window.runBankRecon=function(){let books=nval('bankBooks'),bank=nval('bankStatement'),dep=nval('bankDeposits'),checks=nval('bankChecks'),fees=nval('bankFees'),other=nval('bankOther'),adjustedBank=bank+dep-checks,adjustedBooks=books+dep-fees+other,diff=adjustedBank-adjustedBooks;document.getElementById('bankResult').className='toolResult '+(Math.abs(diff)<0.005?'toolSuccess':'toolDanger');document.getElementById('bankResult').innerHTML='مانده تعدیل‌شده بانک: <b>'+adjustedBank.toLocaleString('en-US')+'</b><br>مانده تعدیل‌شده دفاتر: <b>'+adjustedBooks.toLocaleString('en-US')+'</b><br>اختلاف نهایی: <b>'+diff.toLocaleString('en-US')+'</b><br><b>'+(Math.abs(diff)<0.005?'✅ مغایرت برطرف شد.':'⚠️ هنوز مغایرت وجود دارد.')+'</b>'};
+window.toggleDarkMode=function(){let on=!document.body.classList.contains('darkMode');document.body.classList.toggle('darkMode',on);localStorage.setItem('audit_dark_mode',on?'1':'0');let x=document.getElementById('darkModeState');if(x)x.textContent=on?'روشن':'خاموش'};document.addEventListener('DOMContentLoaded',function(){let on=localStorage.getItem('audit_dark_mode')==='1';document.body.classList.toggle('darkMode',on);let x=document.getElementById('darkModeState');if(x)x.textContent=on?'روشن':'خاموش';});
+})();</script>
+<script id="recovery-versioning-module">(function(){const K='audit_company_recovery_versions_v1',MAX=30;function V(){try{return JSON.parse(localStorage.getItem(K)||'[]')}catch(e){return[]}}function S(v){localStorage.setItem(K,JSON.stringify(v.slice(0,MAX)))}function snap(){if(typeof db==='undefined')throw Error('اطلاعات داشبورد در دسترس نیست');return JSON.parse(JSON.stringify(db))}window.recoveryCreate=function(){try{let v=V();v.unshift({id:'v_'+Date.now(),createdAt:new Date().toISOString(),label:'نسخه '+(v.length+1),data:snap()});S(v);renderRecovery();alert('نسخه پشتیبان با موفقیت ایجاد شد.')}catch(e){alert('خطا: '+e.message)}};window.recoveryRestore=function(id){let x=V().find(a=>a.id===id);if(!x)return;if(!confirm('اطلاعات فعلی با این نسخه جایگزین شود؟'))return;try{db=JSON.parse(JSON.stringify(x.data));if(typeof save==='function')save();if(typeof render==='function')render();if(typeof renderSmartAlerts==='function')renderSmartAlerts();renderRecovery();alert('نسخه با موفقیت بازیابی شد.')}catch(e){alert('خطا در بازیابی: '+e.message)}};window.recoveryDelete=function(id){if(!confirm('این نسخه حذف شود؟'))return;S(V().filter(x=>x.id!==id));renderRecovery()};window.recoveryExport=function(){try{let p={type:'audit-dashboard-backup',version:1,createdAt:new Date().toISOString(),data:snap()};let b=new Blob([JSON.stringify(p,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='پشتیبان_داشبورد_حسابرسی_'+Date.now()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}catch(e){alert('خطا: '+e.message)}};window.recoveryImport=function(){document.getElementById('recoveryFile').click()};window.recoveryReadFile=function(i){let f=i.files&&i.files[0];if(!f)return;let r=new FileReader();r.onload=function(){try{let p=JSON.parse(r.result),d=p.data||p;if(!d||!Array.isArray(d.projects)||!Array.isArray(d.tasks))throw Error('فایل پشتیبان معتبر نیست');if(!confirm('اطلاعات فعلی با این فایل جایگزین شود؟'))return;db=JSON.parse(JSON.stringify(d));if(typeof save==='function')save();if(typeof render==='function')render();if(typeof renderSmartAlerts==='function')renderSmartAlerts();alert('پشتیبان با موفقیت بازیابی شد.')}catch(e){alert('خطا در خواندن پشتیبان: '+e.message)}i.value=''};r.readAsText(f,'utf-8')};window.renderRecovery=function(){let p=document.getElementById('recoveryPanel'),l=document.getElementById('recoveryList');if(!p||!l)return;p.style.display='block';let v=V();if(!v.length){l.innerHTML='<div class="recoveryEmpty">هنوز نسخه‌ای ذخیره نشده است.</div>';return}l.innerHTML=v.map(x=>{let d=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{dateStyle:'full',timeStyle:'short'}).format(new Date(x.createdAt)),z=x.data||{};return `<div class="recoveryItem"><div class="recoveryMeta"><b>${x.label} <span class="recoveryBadge">${d}</span></b><small>${(z.projects||[]).length} پروژه · ${(z.tasks||[]).length} وظیفه · ${(z.docs||[]).length} مدرک · ${(z.letters||[]).length} نامه</small></div><div><button onclick="recoveryRestore('${x.id}')">↩️ بازیابی</button> <button onclick="recoveryDelete('${x.id}')">🗑️ حذف</button></div></div>`}).join('')};window.recoveryOpenPanel=function(){renderRecovery();document.getElementById('recoveryPanel')?.scrollIntoView({behavior:'smooth'})};document.addEventListener('DOMContentLoaded',function(){renderRecovery();let h=document.querySelector('header');if(h){let b=document.createElement('button');b.className='btn';b.type='button';b.textContent='🗂️ نسخه‌های پشتیبان';b.onclick=recoveryOpenPanel;h.appendChild(b)}})})();</script>
+
+<script id="audit-docs-module">
+(function(){
+'use strict';
+
+const A={books:[],bank:[],recon:[],confirm:[]};
+const $=id=>document.getElementById(id);
+const fmt=n=>Number(n||0).toLocaleString('en-US',{maximumFractionDigits:2});
+const escA=x=>String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const normA=x=>String(x??'').toLowerCase().replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/‌/g,' ').replace(/\s+/g,' ').trim();
+
+function listFiles(kind){
+  const el=$('audit'+({books:'Books',bank:'Bank',recon:'Recon',confirm:'Confirm'}[kind])+'Files');
+  const out=$('audit'+({books:'Books',bank:'Bank',recon:'Recon',confirm:'Confirm'}[kind])+'List');
+  if(!el||!out)return;
+  A[kind]=Array.from(el.files||[]);
+  out.innerHTML=A[kind].length?A[kind].map((f,i)=>`<div class="auditDocFile"><span>📎 ${escA(f.name)}</span><small>${(f.size/1024).toFixed(1)} KB</small></div>`).join(''):'فایلی انتخاب نشده است.';
+}
+['books','bank','recon','confirm'].forEach(k=>{
+  const id='audit'+({books:'Books',bank:'Bank',recon:'Recon',confirm:'Confirm'}[k])+'Files';
+  document.addEventListener('DOMContentLoaded',()=>$(id)?.addEventListener('change',()=>listFiles(k)));
+});
+
+function numA(x){
+  if(x===null||x===undefined||x==='')return NaN;
+  let t=String(x).replace(/[٬,]/g,'').replace(/٫/g,'.').replace(/[^\d.\-]/g,'');
+  let n=Number(t); return Number.isFinite(n)?n:NaN;
+}
+function dateA(x){
+  if(!x)return null;
+  let t=String(x).trim().replace(/\//g,'-');
+  let m=t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if(!m)return null;
+  let y=+m[1],mo=+m[2],d=+m[3];
+  // اگر تاریخ شمسی باشد، آن را تقریبی به میلادی تبدیل نمی‌کنیم؛ برای تطبیق فقط رشته نرمال را نگه می‌داریم.
+  return {raw:`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`,y,mo,d};
+}
+function dateDistance(a,b){
+  if(!a||!b)return 999999;
+  // برای سال یکسان، فاصله تقریبی کافی است؛ برای تاریخ‌های شمسی/میلادی متفاوت، تطبیق مبلغ محور خواهد بود.
+  if(a.y!==b.y)return 999999;
+  const da=Date.UTC(a.y,a.mo-1,a.d),db=Date.UTC(b.y,b.mo-1,b.d);
+  return Math.abs(Math.round((da-db)/86400000));
+}
+function classifyHeaders(headers){
+  const h=headers.map(normA);
+  const pick=patterns=>{for(let i=0;i<h.length;i++)if(patterns.some(p=>h[i].includes(p)))return i;return -1};
+  return {
+    date:pick(['تاریخ','date','روز']),
+    desc:pick(['شرح','description','details','بابت','شرح تراکنش']),
+    debit:pick(['بدهکار','debit','برداشت','برداشت از حساب']),
+    credit:pick(['بستانکار','credit','واریز','واریزی']),
+    amount:pick(['مبلغ','amount','مبلغ تراکنش','transaction amount']),
+    balance:pick(['مانده','balance','مانده حساب']),
+    ref:pick(['شماره پیگیری','شماره تراکنش','مرجع','reference','trace','شماره سند','سند'])
+  };
+}
+function rowsFromArray(arr){
+  if(!Array.isArray(arr)||!arr.length)return [];
+  const headers=Object.keys(arr[0]);
+  const idx=classifyHeaders(headers);
+  return arr.map(o=>{
+    const vals=headers.map(h=>o[h]);
+    const amount=numA(idx.amount>=0?vals[idx.amount]:NaN);
+    const debit=numA(idx.debit>=0?vals[idx.debit]:NaN);
+    const credit=numA(idx.credit>=0?vals[idx.credit]:NaN);
+    let signed=Number.isFinite(amount)?amount:(Number.isFinite(credit)?credit:(Number.isFinite(debit)?-debit:NaN));
+    if(Number.isFinite(debit)&&debit!==0&&!Number.isFinite(amount))signed=-Math.abs(debit);
+    if(Number.isFinite(credit)&&credit!==0&&!Number.isFinite(amount))signed=Math.abs(credit);
+    return {date:dateA(idx.date>=0?vals[idx.date]:''),desc:idx.desc>=0?String(vals[idx.desc]??''):'',debit,credit,amount,signed,balance:numA(idx.balance>=0?vals[idx.balance]:NaN),ref:idx.ref>=0?String(vals[idx.ref]??''):'',raw:o};
+  }).filter(r=>Number.isFinite(r.signed)||Number.isFinite(r.balance)||r.desc||r.date);
+}
+function csvRows(text){
+  const lines=text.replace(/\r/g,'').split('\n').filter(x=>x.trim());
+  if(!lines.length)return [];
+  const delim=(lines[0].match(/\t/g)||[]).length>(lines[0].match(/,/g)||[]).length?'\t':',';
+  const parse=line=>{let out=[],cur='',q=false;for(let i=0;i<line.length;i++){let c=line[i];if(c==='"'){if(q&&line[i+1]==='"'){cur+='"';i++;}else q=!q}else if(c===delim&&!q){out.push(cur);cur=''}else cur+=c}out.push(cur);return out};
+  const h=parse(lines[0]).map(x=>x.trim());
+  return rowsFromArray(lines.slice(1).map(line=>{const v=parse(line),o={};h.forEach((k,i)=>o[k]=v[i]??'');return o;}));
+}
+async function loadSheetJS(){
+  if(window.XLSX)return true;
+  await new Promise((resolve,reject)=>{
+    const sc=document.createElement('script');sc.src='https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js';
+    sc.onload=resolve;sc.onerror=reject;document.head.appendChild(sc);
+  });
+  return !!window.XLSX;
+}
+async function loadPdfJS(){
+  if(window.pdfjsLib)return true;
+  await new Promise((resolve,reject)=>{
+    const sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';sc.type='module';
+    sc.onload=resolve;sc.onerror=reject;document.head.appendChild(sc);
+  });
+  return !!window.pdfjsLib;
+}
+async function readOne(file){
+  const ext=(file.name.split('.').pop()||'').toLowerCase();
+  if(['csv','txt'].includes(ext))return {rows:csvRows(await file.text()),text:await file.text(),name:file.name};
+  if(ext==='json'){
+    const x=JSON.parse(await file.text());return {rows:Array.isArray(x)?rowsFromArray(x):rowsFromArray(x.rows||x.data||[]),text:JSON.stringify(x),name:file.name};
+  }
+  if(['xlsx','xls'].includes(ext)){
+    await loadSheetJS();
+    const data=await file.arrayBuffer(),wb=XLSX.read(data,{type:'array',cellDates:true});
+    let all=[];wb.SheetNames.forEach(sn=>{const ws=wb.Sheets[sn],arr=XLSX.utils.sheet_to_json(ws,{defval:'',raw:false});all.push(...rowsFromArray(arr));});
+    return {rows:all,text:'',name:file.name};
+  }
+  if(ext==='pdf'){
+    // PDF text extraction: در صورت نبود PDF.js، کاربر هنوز می‌تواند متن را در بخش دستی وارد کند.
+    try{
+      await loadPdfJS();
+      const buf=await file.arrayBuffer();
+      const pdf=await window.pdfjsLib.getDocument({data:buf}).promise;
+      let text='';
+      for(let p=1;p<=pdf.numPages;p++){const pg=await pdf.getPage(p),c=await pg.getTextContent();text+=c.items.map(x=>x.str).join(' ')+'\n';}
+      return {rows:csvRows(text),text,name:file.name};
+    }catch(e){return {rows:[],text:'',name:file.name,error:'استخراج متن PDF انجام نشد؛ اگر PDF اسکن‌شده است، OCR یا ورود دستی لازم است.'};}
+  }
+  return {rows:[],text:'',name:file.name,error:'فرمت پشتیبانی نمی‌شود.'};
+}
+async function readGroup(kind){
+  const out=[];
+  for(const f of A[kind])out.push(await readOne(f));
+  return out;
+}
+function flat(g){return g.flatMap(x=>x.rows||[])}
+function totalSigned(rows){return rows.reduce((a,r)=>a+(Number.isFinite(r.signed)?r.signed:0),0)}
+function endingBalance(rows){
+  const valid=rows.filter(r=>Number.isFinite(r.balance));
+  return valid.length?valid[valid.length-1].balance:NaN;
+}
+function findBalanceInText(text){
+  if(!text)return NaN;
+  const t=text.replace(/[٬,]/g,'');
+  const ms=[...t.matchAll(/(?:مانده|balance|مبلغ\s+مانده|مانده\s+حساب)[^\d-]{0,30}(-?\d+(?:\.\d+)?)/gi)];
+  return ms.length?numA(ms[ms.length-1][1]):NaN;
+}
+function transactionMatch(a,b,tol,dateTol){
+  if(!Number.isFinite(a.signed)||!Number.isFinite(b.signed))return false;
+  if(Math.abs(a.signed-b.signed)>tol)return false;
+  if(a.date&&b.date&&dateDistance(a.date,b.date)>dateTol)return false;
+  const ad=normA(a.desc),bd=normA(b.desc);
+  if(ad&&bd&&ad.length>3&&bd.length>3){
+    const words=ad.split(' ').filter(w=>w.length>2);
+    const common=words.filter(w=>bd.includes(w)).length;
+    if(common===0 && Math.abs(a.signed-b.signed)>0)return false;
+  }
+  return true;
+}
+function matchRows(A1,B1,tol,dateTol){
+  const used=new Set(),matches=[],unmatchedA=[],unmatchedB=[...B1];
+  A1.forEach(a=>{
+    let best=-1;
+    for(let i=0;i<B1.length;i++){
+      if(used.has(i))continue;
+      if(transactionMatch(a,B1[i],tol,dateTol)){best=i;break}
+    }
+    if(best>=0){used.add(best);matches.push({a,b:B1[best]});}
+    else unmatchedA.push(a);
+  });
+  for(let i=0;i<B1.length;i++)if(!used.has(i))unmatchedB.push(B1[i]);
+  // بالا یک آرایه اولیه داشت؛ فقط موارد واقعاً استفاده‌نشده را نگه می‌داریم.
+  const ub=[];for(let i=0;i<B1.length;i++)if(!used.has(i))ub.push(B1[i]);
+  return {matches,unmatchedA,unmatchedB:ub};
+}
+function severity(n){
+  if(n===0)return ['ok','مغایرت بااهمیتی مشاهده نشد'];
+  if(n<=2)return ['warn','نیازمند بررسی'];
+  return ['bad','مغایرت قابل توجه'];
+}
+function auditControlText(st){
+  const parts=[];
+  if(st.booksBank.unmatchedA||st.booksBank.unmatchedB){
+    parts.push(`کنترل تطبیق گردش حساب بانک با دفاتر: ${st.booksBank.unmatchedA} قلم در دفاتر و ${st.booksBank.unmatchedB} قلم در صورتحساب بانک بدون تطبیق شناسایی شد.`);
+  }
+  if(st.balanceDiff!==null)parts.push(`مانده پایان دوره طبق مدارک مبلغ ${fmt(st.balances.bank)} و طبق دفاتر مبلغ ${fmt(st.balances.books)} بوده و اختلاف مبلغ ${fmt(Math.abs(st.balanceDiff)) است.`);
+  if(st.confirmDiff!==null)parts.push(`مانده تأییدیه بانک با مانده مبنای حسابداری به مبلغ ${fmt(Math.abs(st.confirmDiff))} اختلاف دارد.`);
+  if(st.reconDiff!==null)parts.push(`بین نتیجه صورت مغایرت بانکی و مانده/گردش استخراج‌شده اختلافی معادل ${fmt(Math.abs(st.reconDiff))} مشاهده شد.`);
+  if(!parts.length)parts.push('مدارک برای کنترل اولیه کافی بوده و در تطبیق خودکار اختلاف مشخصی مشاهده نشد؛ بررسی نمونه‌ای و مستندسازی شواهد همچنان ضروری است.');
+  return parts.join('\n');
+}
+function suggestions(st){
+  const x=[];
+  if(st.booksBank.unmatchedA+st.booksBank.unmatchedB>0)x.push('برای اقلام تطبیق‌نشده، اصل سند، تاریخ ثبت، شرح، شماره پیگیری و علت تأخیر ثبت را بررسی و اقلام باز را تا تعیین تکلیف پیگیری کنید.');
+  if(st.balanceDiff!==null&&Math.abs(st.balanceDiff)>Number($('auditDocTolerance').value||0))x.push('مانده بانک و دفاتر را با تأییدیه/صورتحساب بانک در تاریخ گزارش تطبیق دهید و اقلام باز صورت مغایرت را با اسناد مثبته بررسی کنید.');
+  if(st.confirmDiff!==null&&Math.abs(st.confirmDiff)>Number($('auditDocTolerance').value||0))x.push('تفاوت مانده تأییدیه بانک با دفاتر را با دریافت توضیح کتبی و مستندات بانکی بررسی و در کاربرگ مغایرت مستند کنید.');
+  if(st.reconDiff!==null&&Math.abs(st.reconDiff)>Number($('auditDocTolerance').value||0))x.push('محاسبات صورت مغایرت بانکی، اقلام واریزی در راه، چک‌های در جریان، کارمزد و سایر اقلام تعدیلی مجدداً محاسبه شود.');
+  if(!x.length)x.push('نتیجه تطبیق را به کاربرگ حسابرسی منتقل کرده و برای اقلام بااهمیت، شواهد حسابرسی مستقل نگهداری کنید.');
+  return x;
+}
+async function auditDocsRun(){
+  const loading=$('auditDocLoading'),res=$('auditDocResults');
+  loading.classList.add('show');res.innerHTML='';
+  try{
+    const [bg,bankg,rg,cg]=await Promise.all([readGroup('books'),readGroup('bank'),readGroup('recon'),readGroup('confirm')]);
+    const books=flat(bg),banks=flat(bankg),recons=flat(rg),confirms=flat(cg);
+    const tol=Math.abs(Number($('auditDocTolerance').value||0)),dt=Math.max(0,Number($('auditDocDateTolerance').value||2));
+    const mb=matchRows(books,banks,tol,dt);
+    const booksBal=endingBalance(books),bankBal=endingBalance(banks);
+    const confBal=endingBalance(confirms);
+    const confTextBal=confirms.length?confirms.reduce((a,r)=>Number.isFinite(r.balance)?r.balance:a,NaN):NaN;
+    const confirmFinal=Number.isFinite(confBal)?confBal:confTextBal;
+    const balanceDiff=Number.isFinite(booksBal)&&Number.isFinite(bankBal)?bankBal-booksBal:null;
+    const confirmDiff=Number.isFinite(confirmFinal)&&Number.isFinite(booksBal)?confirmFinal-booksBal:null;
+    const reconBal=endingBalance(recons);
+    const reconDiff=Number.isFinite(reconBal)&&Number.isFinite(bankBal)?reconBal-bankBal:null;
+    const st={booksBank:{unmatchedA:mb.unmatchedA.length,unmatchedB:mb.unmatchedB.length},balances:{books:booksBal,bank:bankBal,confirm:confirmFinal},balanceDiff,confirmDiff,reconDiff};
+    const totalExceptions=mb.unmatchedA.length+mb.unmatchedB.length+(balanceDiff!==null&&Math.abs(balanceDiff)>tol?1:0)+(confirmDiff!==null&&Math.abs(confirmDiff)>tol?1:0)+(reconDiff!==null&&Math.abs(reconDiff)>tol?1:0);
+    const sev=severity(totalExceptions);
+    $('auditDocSummary').style.display='grid';
+    $('auditDocSummary').innerHTML=[
+      ['مدرک خوانده‌شده',bg.length+bankg.length+rg.length+cg.length],
+      ['تراکنش دفاتر',books.length],['تراکنش بانک',banks.length],['تطبیق موفق',mb.matches.length],['استثنا',totalExceptions]
+    ].map(x=>`<div class="auditDocKpi"><span class="muted">${x[0]}</span><b>${fmt(x[1])}</b></div>`).join('');
+    const ctl=auditControlText(st),sugs=suggestions(st);
+    const unmatched=[...mb.unmatchedA.map(x=>({side:'دفاتر',r:x})),...mb.unmatchedB.map(x=>({side:'بانک',r:x}))].slice(0,80);
+    res.innerHTML=`
+      <div class="auditDocResult ${sev[0]}">
+        <b>نتیجه کلی:</b> <span class="auditDocPill ${sev[0]}">${sev[1]}</span>
+        <div style="margin-top:8px">تعداد اقلام تطبیق موفق: <b>${mb.matches.length}</b> | اقلام بدون تطبیق: <b>${mb.unmatchedA.length+mb.unmatchedB.length}</b></div>
+      </div>
+      <div class="auditDocResult">
+        <h3 style="margin-top:0">📊 کنترل مانده‌ها</h3>
+        <table class="auditDocTable"><thead><tr><th>منبع</th><th>مانده استخراج‌شده</th><th>وضعیت</th></tr></thead><tbody>
+        <tr><td>دفاتر</td><td>${Number.isFinite(booksBal)?fmt(booksBal):'استخراج نشد'}</td><td>—</td></tr>
+        <tr><td>صورتحساب بانک</td><td>${Number.isFinite(bankBal)?fmt(bankBal):'استخراج نشد'}</td><td>${balanceDiff===null?'—':Math.abs(balanceDiff)<=tol?'مطابق':'مغایرت '+fmt(Math.abs(balanceDiff))}</td></tr>
+        <tr><td>تأییدیه بانک</td><td>${Number.isFinite(confirmFinal)?fmt(confirmFinal):'استخراج نشد'}</td><td>${confirmDiff===null?'—':Math.abs(confirmDiff)<=tol?'مطابق':'مغایرت '+fmt(Math.abs(confirmDiff))}</td></tr>
+        <tr><td>صورت مغایرت</td><td>${Number.isFinite(reconBal)?fmt(reconBal):'استخراج نشد'}</td><td>${reconDiff===null?'—':Math.abs(reconDiff)<=tol?'مطابق':'مغایرت '+fmt(Math.abs(reconDiff))}</td></tr>
+        </tbody></table>
+      </div>
+      <div class="auditDocResult">
+        <h3 style="margin-top:0">🔎 اقلام بدون تطبیق</h3>
+        ${unmatched.length?`<div class="tablewrap"><table class="auditDocTable"><thead><tr><th>منبع</th><th>تاریخ</th><th>شرح</th><th>مبلغ</th><th>مرجع</th></tr></thead><tbody>${unmatched.map(x=>`<tr><td>${x.side}</td><td>${escA(x.r.date?.raw||'—')}</td><td>${escA(x.r.desc||'—')}</td><td>${Number.isFinite(x.r.signed)?fmt(x.r.signed):'—'}</td><td>${escA(x.r.ref||'—')}</td></tr>`).join('')}</tbody></table></div>`:'<div class="auditDocText">🟢 قلم بدون تطبیق شناسایی نشد.</div>'}
+      </div>
+      <div class="auditDocResult">
+        <h3 style="margin-top:0">📝 متن کنترل حسابرسی پیشنهادی</h3>
+        <textarea id="auditControlOutput" class="input auditDocTextArea">${escA(ctl)}</textarea>
+        <div class="muted" style="margin-top:6px">متن قابل ویرایش است و بر اساس شواهد استخراج‌شده از فایل‌های همین بررسی تولید شده است.</div>
+      </div>
+      <div class="auditDocResult">
+        <h3 style="margin-top:0">💡 پیشنهادهای رسیدگی حسابرسی</h3>
+        <ul>${sugs.map(x=>`<li style="margin:7px 0">${escA(x)}</li>`).join('')}</ul>
+      </div>
+      <div class="auditDocResult">
+        <h3 style="margin-top:0">⚠️ محدودیت و نکته حرفه‌ای</h3>
+        <div class="auditDocText">این ابزار «کمک‌حسابرس» است و جای قضاوت حرفه‌ای یا بررسی اصل اسناد را نمی‌گیرد. PDFهای اسکن‌شده، تصاویر و فایل‌هایی که ساختار جدول استاندارد ندارند ممکن است نیاز به ورود/تأیید دستی داشته باشند. نتیجه تطبیق باید با اهمیت نسبی، ریسک و شواهد مستقل حسابرسی ارزیابی شود.</div>
+      </div>
+    `;
+  }catch(e){
+    res.innerHTML=`<div class="auditDocResult bad"><b>خطا در تحلیل فایل‌ها:</b><br>${escA(e.message||e)}</div>`;
+  }finally{loading.classList.remove('show')}
+}
+function auditDocsClear(){
+  ['books','bank','recon','confirm'].forEach(k=>{A[k]=[];const id='audit'+({books:'Books',bank:'Bank',recon:'Recon',confirm:'Confirm'}[k])+'Files';if($(id))$(id).value='';listFiles(k)});
+  $('auditDocResults').innerHTML='';$('auditDocSummary').style.display='none';$('auditDocSummary').innerHTML='';
+}
+function auditDocsLoadDemo(){
+  auditDocsClear();
+  const mk=(name,content)=>new File([content],name,{type:'text/csv'});
+  const books=mk('دفاتر.csv','تاریخ,شرح,بدهکار,بستانکار,مانده\n1405-06-01,واریز مشتری,,10000000,10000000\n1405-06-03,خرید مواد,3000000,,7000000\n1405-06-05,کارمزد بانک,150000,,6850000');
+  const bank=mk('صورتحساب بانک.csv','تاریخ,شرح,مبلغ,مانده\n1405-06-01,واریز مشتری,10000000,10000000\n1405-06-03,خرید مواد,-3000000,7000000\n1405-06-05,کارمزد بانک,-150000,6850000');
+  const recon=mk('صورت مغایرت.csv','تاریخ,شرح,مبلغ,مانده\n1405-06-05,مانده نهایی,6850000,6850000');
+  const conf=mk('تاییدیه بانک.csv','تاریخ,شرح,مبلغ,مانده\n1405-06-06,مانده تاییدیه,,6850000');
+  A.books=[books];A.bank=[bank];A.recon=[recon];A.confirm=[conf];
+  ['books','bank','recon','confirm'].forEach(listFiles);
+  alert('نمونه آزمایشی بارگذاری شد. حالا «اجرای تطبیق» را بزن.');
+}
+window.auditDocsRun=auditDocsRun;
+window.auditDocsClear=auditDocsClear;
+window.auditDocsLoadDemo=auditDocsLoadDemo;
+})();
+</script>
+
+
+<style>
+.auditSuiteGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.auditSuiteCard{border:1px solid var(--border,#d9dee8);border-radius:16px;padding:15px;background:var(--card,#fff);cursor:pointer;transition:.2s}
+.auditSuiteCard:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.07)}
+.auditSuiteCard.active{outline:2px solid var(--primary,#2563eb)}
+.auditSuiteCard .ico{font-size:26px}.auditSuiteCard b{display:block;margin-top:7px}.auditSuiteCard small{color:#6b7280;line-height:1.7}
+.auditSuiteUploadGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}
+.auditSuiteUpload{border:1px dashed #aab4c3;border-radius:14px;padding:14px;background:rgba(127,127,127,.035)}
+.auditSuiteUpload input{width:100%;margin-top:8px}
+.auditSuiteKpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:15px}
+.auditSuiteKpi{padding:14px;border:1px solid var(--border,#d9dee8);border-radius:14px;text-align:center}
+.auditSuiteKpi b{display:block;font-size:20px;margin-top:4px}
+.auditSuiteResult{margin-top:15px;border:1px solid var(--border,#d9dee8);border-radius:16px;padding:15px}
+.auditSuitePill{display:inline-block;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700}
+.auditSuitePill.ok{background:#dcfce7;color:#166534}.auditSuitePill.warn{background:#fef3c7;color:#92400e}.auditSuitePill.bad{background:#fee2e2;color:#991b1b}
+.auditSuiteTable{width:100%;border-collapse:collapse}.auditSuiteTable th,.auditSuiteTable td{padding:9px;border-bottom:1px solid var(--border,#e5e7eb);text-align:right;font-size:13px}
+.auditSuiteTable th{font-weight:800}
+.auditSuiteText{white-space:pre-wrap;line-height:2}
+.auditSuiteActions{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:1000px){.auditSuiteGrid{grid-template-columns:repeat(2,1fr)}.auditSuiteKpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.auditSuiteGrid,.auditSuiteUploadGrid{grid-template-columns:1fr}.auditSuiteKpis{grid-template-columns:1fr 1fr}}
+</style>
+
+
+
+
+<section id="auditSuite" hidden>
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap">
+      <div>
+        <h2 style="margin:0">🧩 کنترل خودکار سایر سرفصل‌های حسابرسی</h2>
+        <div class="muted" style="margin-top:6px">
+          اسناد هر سرفصل را وارد کن؛ سیستم اقلام قابل استخراج را بررسی می‌کند، کنترل‌های اولیه را انجام می‌دهد،
+          استثناها و ریسک‌ها را نشان می‌دهد و متن «کنترل حسابرسی / مشاهدات / پیشنهاد» تولید می‌کند.
+        </div>
+      </div>
+      <div class="auditSuiteActions">
+        <button class="btn" onclick="auditSuiteDemo()">🧪 نمونه آزمایشی</button>
+        <button class="btn" onclick="auditSuiteClear()">🗑️ پاک‌کردن</button>
+        <button class="btn primary" onclick="auditSuiteRun()">🔍 اجرای کنترل</button>
+      </div>
+    </div>
+
+    <div class="auditSuiteGrid" id="auditSuiteCategories"></div>
+
+    <div class="auditSuiteResult">
+      <h3 style="margin:0">📎 مدارک مورد نیاز برای <span id="auditSuiteTitle">حقوق و دستمزد</span></h3>
+      <div class="muted" style="margin-top:5px" id="auditSuiteHint"></div>
+      <div class="auditSuiteUploadGrid" id="auditSuiteUploads"></div>
+    </div>
+
+    <div class="auditSuiteResult">
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <label class="field" style="min-width:190px"><span>حد تحمل مبلغ</span><input id="auditSuiteTol" class="input" type="number" value="1000"></label>
+        <label class="field" style="min-width:190px"><span>عمق کنترل</span><select id="auditSuiteDepth" class="input"><option value="standard">استاندارد</option><option value="strict">سخت‌گیرانه</option></select></label>
+      </div>
+    </div>
+
+    <div id="auditSuiteResult"></div>
+  </div>
+</section>
+
+<script id="audit-suite-module">
+(function(){
+const CATS={
+ payroll:{
+  icon:'👥',title:'حقوق و دستمزد',
+  hint:'برای کنترل حقوق، بیمه و مالیات؛ فایل‌های لیست حقوق، لیست بیمه، مالیات حقوق، بانک پرداخت حقوق و در صورت وجود قرارداد/حکم را وارد کنید.',
+  docs:[
+   ['payroll','📋 لیست حقوق و دستمزد'],['insurance','🛡️ لیست/پرداخت بیمه'],
+   ['tax','🧾 لیست/پرداخت مالیات حقوق'],['paybank','🏦 گردش بانک پرداخت حقوق']
+  ],
+  checks:['تطبیق جمع ناخالص و خالص حقوق','کنترل کسورات و پرداخت خالص','کنترل بیمه نسبت به مبنای مشمول','کنترل مالیات حقوق نسبت به لیست','تطبیق پرداخت بانک با خالص حقوق','شناسایی کارکنان/ردیف‌های بدون تطبیق','کنترل اقلام غیرعادی و تکراری'],
+ },
+ expenses:{
+  icon:'💳',title:'هزینه‌ها',
+  hint:'دفتر/معین هزینه، اسناد هزینه، فاکتورها، پرداخت بانک و در صورت وجود تنخواه یا صورت‌وضعیت را وارد کنید.',
+  docs:[['ledger','📒 دفتر/معین هزینه'],['invoices','🧾 فاکتور و اسناد هزینه'],['bank','🏦 گردش بانک'],['petty','💵 تنخواه/پرداخت‌ها']],
+  checks:['تطبیق مبلغ و تاریخ هزینه با پرداخت','شناسایی هزینه‌های بدون سند پشتیبان','شناسایی پرداخت‌های تکراری','بررسی شرح و ماهیت هزینه','کنترل اقلام با مبلغ غیرعادی','تفکیک هزینه‌های دوره از پیش‌پرداخت/دارایی'],
+ },
+ purchases:{
+  icon:'🛒',title:'خرید و پرداختنی‌ها',
+  hint:'خرید/فاکتور، دفتر خرید یا معین تامین‌کنندگان، گردش حساب پرداختنی و بانک را وارد کنید.',
+  docs:[['purchase','🧾 فاکتور/خرید'],['ap','📒 معین تامین‌کنندگان'],['bank','🏦 پرداخت‌های بانکی'],['confirm','✉️ تأییدیه تامین‌کنندگان']],
+  checks:['تطبیق فاکتور با ثبت حسابداری','تطبیق پرداخت با بدهی تامین‌کننده','شناسایی خرید ثبت‌نشده/پرداخت بدون بدهی','کنترل اقلام تکراری','کنترل مانده تاییدیه با دفاتر'],
+ },
+ sales:{
+  icon:'📈',title:'فروش و دریافتنی‌ها',
+  hint:'فروش/صورتحساب، دفتر فروش یا معین مشتریان، دریافت‌های بانکی و تأییدیه مشتریان را وارد کنید.',
+  docs:[['sales','🧾 فروش/صورتحساب'],['ar','📒 معین مشتریان'],['bank','🏦 دریافت‌های بانکی'],['confirm','✉️ تأییدیه مشتریان']],
+  checks:['تطبیق فروش با ثبت حسابداری','تطبیق وصول با بدهی مشتری','شناسایی فروش بدون دریافت/ثبت مشکوک','کنترل اقلام تکراری','کنترل مانده تأییدیه با دفاتر'],
+ },
+ fixed:{
+  icon:'🏢',title:'دارایی‌های ثابت',
+  hint:'دفتر دارایی ثابت، فاکتور خرید، پرداخت بانک، محاسبات استهلاک و صورتجلسات فروش/اسقاط را وارد کنید.',
+  docs:[['register','📋 دفتر دارایی ثابت'],['invoice','🧾 فاکتور خرید'],['bank','🏦 پرداخت بانک'],['depr','📉 محاسبه استهلاک']],
+  checks:['تطبیق خرید دارایی با ثبت در دفتر دارایی','کنترل تاریخ بهره‌برداری','کنترل محاسبه استهلاک','شناسایی دارایی بدون فاکتور/پرداخت','شناسایی اقلامی که احتمالاً باید هزینه یا دارایی باشند'],
+ },
+ inventory:{
+  icon:'📦',title:'موجودی کالا',
+  hint:'کاردکس، گزارش شمارش، خرید، فروش/مصرف و در صورت وجود صورتجلسه انبار را وارد کنید.',
+  docs:[['stock','📦 کاردکس/گردش کالا'],['count','🔢 شمارش فیزیکی'],['purchase','🧾 خرید'],['usage','📤 فروش/مصرف/خروج']],
+  checks:['تطبیق موجودی ابتدای دوره و گردش','تطبیق شمارش با کاردکس','شناسایی کسری/اضافی','کنترل اقلام بدون گردش','شناسایی مقادیر یا مبالغ غیرعادی'],
+ },
+ tax:{
+  icon:'🧮',title:'مالیات و بیمه',
+  hint:'اظهارنامه/گزارش مالیاتی، لیست حقوق، بیمه، دفاتر و پرداخت‌های بانکی را وارد کنید.',
+  docs:[['tax','🧾 مالیات'],['insurance','🛡️ بیمه'],['ledger','📒 دفاتر'],['bank','🏦 پرداخت‌ها']],
+  checks:['تطبیق مالیات/بیمه با دفاتر','تطبیق مبالغ پرداختی با بدهی','شناسایی مانده‌های باز','کنترل اقلام ثبت‌شده ولی پرداخت‌نشده','شناسایی اختلاف بین گزارش‌ها'],
+ },
+};
+
+let cat='payroll', files={};
+Object.keys(CATS).forEach(k=>files[k]={});
+
+function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function norm(s){return String(s??'').replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[\u200c\u200f]/g,' ').replace(/\s+/g,' ').trim().toLowerCase();}
+function num(s){
+ if(s===null||s===undefined||s==='')return NaN;
+ let t=String(s).replace(/[٬, ]/g,'').replace(/[()]/g,m=>m==='('?'-':'');
+ t=t.replace(/[^\d.+-]/g,''); return Number(t);
+}
+function rowsFrom(arr){
+ if(!Array.isArray(arr)||!arr.length)return [];
+ const hs=Object.keys(arr[0]||{});
+ return arr.map(o=>{
+  const vals=Object.values(o).map(v=>String(v??''));
+  let text=Object.entries(o).map(([k,v])=>k+' '+v).join(' | ');
+  let amount=NaN;
+  for(const [k,v] of Object.entries(o)){
+   const nk=norm(k);
+   if(/مبلغ|amount|خالص|ناخالص|جمع|بدهکار|بستانکار|مانده|پرداخت|دریافت|حق.?بیمه|مالیات/.test(nk)){const n=num(v);if(Number.isFinite(n)&&Math.abs(n)>0){amount=n;break;}}
+  }
+  return {text,amount,vals};
+ });
+}
+async function loadX(){
+ if(window.XLSX)return true;
+ return await new Promise(resolve=>{
+  const sc=document.createElement('script');
+  sc.src='https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js';
+  sc.onload=()=>resolve(!!window.XLSX); sc.onerror=()=>resolve(false); document.head.appendChild(sc);
+ });
+}
+async function readFile(f){
+ const ext=(f.name.split('.').pop()||'').toLowerCase();
+ try{
+  if(['xlsx','xls'].includes(ext)){
+   if(!await loadX())return {name:f.name,rows:[],text:'',error:'کتابخانه Excel بارگذاری نشد.'};
+   const wb=XLSX.read(await f.arrayBuffer(),{type:'array',cellDates:true});
+   let rows=[]; for(const sn of wb.SheetNames){rows.push(...rowsFrom(XLSX.utils.sheet_to_json(wb.Sheets[sn],{defval:'',raw:false})));}
+   return {name:f.name,rows,text:rows.map(x=>x.text).join('\n')};
+  }
+  const text=await f.text();
+  if(ext==='json'){
+   const j=JSON.parse(text); const arr=Array.isArray(j)?j:(Array.isArray(j.data)?j.data:[j]);
+   return {name:f.name,rows:rowsFrom(arr),text};
+  }
+  if(['csv','txt'].includes(ext)){
+   const lines=text.split(/\r?\n/).filter(Boolean), rows=[];
+   if(lines.length>1){
+    const sep=lines[0].includes(';')?';':lines[0].includes('\t')?'\t':',';
+    const heads=lines[0].split(sep).map(x=>x.trim());
+    for(const line of lines.slice(1)){
+     const p=line.split(sep); const o={}; heads.forEach((h,i)=>o[h]=p[i]??''); rows.push(...rowsFrom([o]));
+    }
+   }
+   return {name:f.name,rows,text};
+  }
+  if(ext==='pdf'){
+   if(!window.pdfjsLib){
+    await new Promise((resolve,reject)=>{
+     const sc=document.createElement('script'); sc.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+     sc.onload=()=>resolve(); sc.onerror=reject; document.head.appendChild(sc);
+    }).catch(()=>{});
+   }
+   if(!window.pdfjsLib)return {name:f.name,rows:[],text:'',error:'PDF خوانی در دسترس نیست.'};
+   const pdf=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise; let text='';
+   for(let i=1;i<=pdf.numPages;i++){const p=await pdf.getPage(i);const c=await p.getTextContent();text+=c.items.map(x=>x.str).join(' ')+'\n';}
+   return {name:f.name,rows:[],text};
+  }
+  return {name:f.name,rows:[],text:'',error:'فرمت پشتیبانی نمی‌شود.'};
+ }catch(e){return {name:f.name,rows:[],text:'',error:e.message||'خطا در خواندن فایل'};}
+}
+function categoryUI(){
+ const el=document.getElementById('auditSuiteCategories');
+ el.innerHTML=Object.entries(CATS).map(([k,c])=>`<div class="auditSuiteCard ${k===cat?'active':''}" onclick="auditSuiteSelect('${k}')"><div class="ico">${c.icon}</div><b>${c.title}</b><small>${c.checks.length} کنترل پیشنهادی</small></div>`).join('');
+ document.getElementById('auditSuiteTitle').textContent=CATS[cat].title;
+ document.getElementById('auditSuiteHint').textContent=CATS[cat].hint;
+ document.getElementById('auditSuiteUploads').innerHTML=CATS[cat].docs.map(([key,label])=>`
+  <div class="auditSuiteUpload"><b>${label}</b>
+   <div class="muted" style="margin-top:4px">Excel / CSV / TXT / JSON / PDF</div>
+   <input type="file" multiple accept=".xlsx,.xls,.csv,.txt,.json,.pdf" data-doc="${key}">
+  </div>`).join('');
+ document.querySelectorAll('#auditSuiteUploads input').forEach(inp=>inp.addEventListener('change',e=>{
+   files[cat][e.target.dataset.doc]=[...e.target.files];
+ }));
+}
+window.auditSuiteSelect=function(k){cat=k;categoryUI();document.getElementById('auditSuiteResult').innerHTML='';};
+function allFiles(){return Object.values(files[cat]).flat();}
+function keywordHits(text,words){const t=norm(text);return words.filter(w=>t.includes(norm(w))).length;}
+function allRows(groups){return groups.flatMap(g=>g.rows||[]);}
+function sumRows(rows){return rows.reduce((a,r)=>a+(Number.isFinite(r.amount)?r.amount:0),0);}
+function duplicateRows(rows){
+ const map=new Map(); rows.forEach(r=>{const k=norm(r.text);if(k.length>12)map.set(k,(map.get(k)||0)+1);});
+ return [...map.entries()].filter(x=>x[1]>1).length;
+}
+function runRules(data){
+ const tol=Number(document.getElementById('auditSuiteTol').value||0), depth=document.getElementById('auditSuiteDepth').value;
+ const totalFiles=allFiles().length, groups=data.filter(x=>x.rows.length||x.text);
+ const rows=allRows(groups), total=sumRows(rows);
+ const issues=[], observations=[], suggestions=[];
+ const has=(key)=>data.filter(x=>files[cat]&&files[cat][key]&&files[cat][key].includes(x.file)).length;
+ const texts=data.map(x=>x.text).join('\n')+' '+rows.map(x=>x.text).join('\n');
+
+ if(totalFiles<CATS[cat].docs.length)issues.push(`مدارک کامل سرفصل وارد نشده است؛ ${CATS[cat].docs.length} گروه مدرک تعریف شده و ${totalFiles} فایل بارگذاری شده.`);
+ const dup=duplicateRows(rows); if(dup)issues.push(`${dup} الگوی تکراری/احتمال ثبت تکراری در داده‌های استخراج‌شده شناسایی شد.`);
+ const negative=rows.filter(r=>Number.isFinite(r.amount)&&r.amount<0).length;
+ if(negative)observations.push(`${negative} قلم با مبلغ منفی در داده‌های استخراج‌شده وجود دارد؛ ماهیت بدهکار/بستانکار باید بررسی شود.`);
+
+ const rules={
+ payroll:[
+  [/حقوق|دستمزد|ناخالص|خالص/, 'اطلاعات حقوق و دستمزد در مدارک استخراج شد.'],
+  [/بیمه|حق بیمه/, 'اقلام بیمه در مدارک مشاهده شد و باید با مبنای مشمول تطبیق شود.'],
+  [/مالیات حقوق|مالیات/, 'اقلام مالیات در مدارک مشاهده شد و باید با لیست حقوق و پرداخت‌ها تطبیق شود.']
+ ],
+ expenses:[[/هزینه|فاکتور|تنخواه/,'اقلام هزینه‌ای شناسایی شد و باید با اسناد مثبته و پرداخت بانکی تطبیق شود.']],
+ purchases:[[/خرید|تامین کننده|تأمین کننده|فاکتور/,'اقلام خرید/تامین‌کنندگان شناسایی شد و باید با بدهی و پرداخت تطبیق شود.']],
+ sales:[[/فروش|مشتری|دریافت/,'اقلام فروش/دریافتنی شناسایی شد و باید با وصول و مانده مشتریان تطبیق شود.']],
+ fixed:[[/دارایی|استهلاک|بهای تمام شده/,'اطلاعات دارایی ثابت/استهلاک شناسایی شد و کنترل ثبت و استهلاک پیشنهاد می‌شود.']],
+ inventory:[[/موجودی|کالا|کاردکس|انبار/,'اطلاعات موجودی/کاردکس شناسایی شد و باید با شمارش و گردش کالا تطبیق شود.']],
+ tax:[[/مالیات|بیمه/,'اطلاعات مالیات/بیمه شناسایی شد و باید با دفاتر و پرداخت‌ها تطبیق شود.']]
+ };
+ (rules[cat]||[]).forEach(([rx,msg])=>{if(rx.test(texts))observations.push(msg);});
+ if(depth==='strict' && rows.length===0)issues.push('در حالت سخت‌گیرانه، داده ساختاریافته کافی برای آزمون‌های عددی استخراج نشد.');
+ if(issues.length){
+  suggestions.push('مدارک ناقص یا اقلام استثنایی را از مسئول مربوط اخذ و تا تعیین تکلیف در کاربرگ پیگیری کنید.');
+  suggestions.push('برای اقلام با ریسک بالاتر، اصل سند، تاریخ، مبلغ، طرف حساب و مجوز/تأیید مربوط را بررسی کنید.');
+ }
+ CATS[cat].checks.forEach(x=>suggestions.push('کنترل پیشنهادی: '+x+'؛ نتیجه باید با شواهد پرونده مستند شود.'));
+ if(dup)suggestions.push('اقلام تکراری شناسایی‌شده را با شماره سند، فاکتور، تاریخ و مبلغ بررسی و از ثبت مضاعف اطمینان حاصل کنید.');
+ const sev=issues.length>=3?['bad','مغایرت/نقص قابل توجه']:issues.length?['warn','نیازمند بررسی']:['ok','کنترل اولیه بدون استثنای عمده'];
+ const control=`در اجرای کنترل ${CATS[cat].title}، مدارک ارائه‌شده دریافت و اطلاعات قابل استخراج از آنها بررسی و با یکدیگر مقایسه شد. ${observations.join(' ')} ${issues.length?'استثناهای زیر مشاهده شد: '+issues.join(' '):'در آزمون‌های اولیه انجام‌شده، مغایرت عمده‌ای شناسایی نشد؛ با این حال کفایت و اعتبار شواهد و آزمون‌های تفصیلی باید توسط حسابرس بررسی شود.'}`;
+ return {sev,totalFiles,rows,groups,total,issues,observations,suggestions,control,tol};
+}
+window.auditSuiteRun=async function(){
+ const res=document.getElementById('auditSuiteResult');res.innerHTML='<div class="auditSuiteResult">⏳ در حال خواندن و بررسی مدارک...</div>';
+ const data=[];
+ for(const [key,fs] of Object.entries(files[cat])) for(const f of fs){const x=await readFile(f);x.docKey=key;x.file=f;data.push(x);}
+ const st=runRules(data);
+ const fileErrors=data.filter(x=>x.error);
+ res.innerHTML=`
+ <div class="auditSuiteKpis">
+  <div class="auditSuiteKpi">فایل‌ها<b>${st.totalFiles}</b></div>
+  <div class="auditSuiteKpi">ردیف‌های استخراج‌شده<b>${st.rows.length}</b></div>
+  <div class="auditSuiteKpi">مبلغ قابل استخراج<b>${Number.isFinite(st.total)?st.total.toLocaleString('fa-IR'):'—'}</b></div>
+  <div class="auditSuiteKpi">استثناها<b>${st.issues.length}</b></div>
+  <div class="auditSuiteKpi">گروه مدارک<b>${st.groups.length}</b></div>
+ </div>
+ <div class="auditSuiteResult">
+  <b>نتیجه کلی:</b> <span class="auditSuitePill ${st.sev[0]}">${st.sev[1]}</span>
+  ${fileErrors.length?`<div style="margin-top:8px">⚠️ خطای خواندن: ${fileErrors.map(x=>esc(x.name+' — '+x.error)).join('<br>')}</div>`:''}
+ </div>
+ <div class="auditSuiteResult"><h3 style="margin-top:0">🔎 استثناها و نکات کنترلی</h3>
+  ${st.issues.length?'<ul>'+st.issues.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'<div class="auditSuiteText">🟢 استثنای عمده بر اساس آزمون‌های خودکار شناسایی نشد.</div>'}
+  ${st.observations.length?'<div class="auditSuiteText" style="margin-top:8px"><b>مشاهدات:</b><br>'+esc(st.observations.join('\\n'))+'</div>':''}
+ </div>
+ <div class="auditSuiteResult"><h3 style="margin-top:0">📋 کنترل‌های انجام‌شده</h3>
+  <table class="auditSuiteTable"><thead><tr><th>سرفصل</th><th>کنترل</th><th>وضعیت</th></tr></thead><tbody>
+  ${CATS[cat].checks.map(x=>`<tr><td>${esc(CATS[cat].title)}</td><td>${esc(x)}</td><td>پیشنهاد آزمون</td></tr>`).join('')}
+  </tbody></table>
+ </div>
+ <div class="auditSuiteResult"><h3 style="margin-top:0">📝 متن کنترل حسابرسی پیشنهادی</h3>
+  <textarea id="auditSuiteControl" class="input" style="min-height:180px;line-height:2">${esc(st.control)}</textarea>
+  <div class="muted" style="margin-top:6px">این متن بر اساس فایل‌های همین بررسی تولید شده و قبل از درج در گزارش باید توسط حسابرس بازبینی و با شواهد پرونده تطبیق داده شود.</div>
+ </div>
+ <div class="auditSuiteResult"><h3 style="margin-top:0">⚠️ پیشنهادهای رسیدگی</h3>
+  <ul>${st.suggestions.map(x=>`<li style="margin:7px 0">${esc(x)}</li>`).join('')}</ul>
+ </div>`;
+};
+window.auditSuiteClear=function(){
+ files[cat]={}; categoryUI(); document.getElementById('auditSuiteResult').innerHTML='';
+};
+window.auditSuiteDemo=function(){
+ auditSuiteClear();
+ const blob=(name,text)=>new File([text],name,{type:'text/csv'});
+ const demos={
+  payroll:[
+   ['payroll',blob('لیست_حقوق.csv','نام,خالص حقوق,ناخالص حقوق\\nاحمدی,120000000,145000000\\nمحمدی,95000000,115000000')],
+   ['insurance',blob('بیمه.csv','شخص,حق بیمه\\nاحمدی,43500000\\nمحمدی,34500000')],
+   ['tax',blob('مالیات.csv','شخص,مالیات حقوق\\nاحمدی,8000000\\nمحمدی,5000000')],
+   ['paybank',blob('بانک_حقوق.csv','شرح,مبلغ\\nپرداخت حقوق احمدی,120000000\\nپرداخت حقوق محمدی,95000000')]
+  ],
+  expenses:[
+   ['ledger',blob('دفتر_هزینه.csv','شرح,مبلغ\\nاجاره,50000000\\nپذیرایی,12000000\\nکارمزد,3000000')],
+   ['invoices',blob('فاکتورها.csv','شماره,مبلغ\\n1001,50000000\\n1002,12000000')],
+   ['bank',blob('بانک.csv','شرح,مبلغ\\nپرداخت اجاره,50000000\\nپرداخت پذیرایی,12000000')],
+   ['petty',blob('تنخواه.csv','شرح,مبلغ\\nخرید جزئی,3000000')]
+  ]
+ };
+ (demos[cat]||demos.expenses).forEach(([k,f])=>{files[cat][k]=[f];});
+ categoryUI();
+ document.getElementById('auditSuiteResult').innerHTML='<div class="auditSuiteResult">🧪 نمونه آزمایشی بارگذاری شد؛ روی «اجرای کنترل» بزن.</div>';
+};
+categoryUI();
+})();
+</script>
+
+<div class="modal auditPreviewModal" id="auditPreviewModal"><div class="box auditPreviewBox"><div class="auditPreviewHead"><h2 id="auditPreviewTitle" style="margin:0;font-size:18px">پیش‌نمایش فایل</h2><button class="drawerClose" onclick="auditFilesClosePreview()">×</button></div><div id="auditPreviewBody" class="auditPreviewBody"></div><div class="actions"><button class="btn" onclick="auditFilesClosePreview()">بستن</button></div></div></div><script>
+const AUDIT_FILES_DB='audit_workpapers_files_v1';let auditFilesCache=[],auditFilesObjectUrls=[];
+function auditFilesOpenDB(){return new Promise((resolve,reject)=>{const r=indexedDB.open(AUDIT_FILES_DB,1);r.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains('files')){const st=d.createObjectStore('files',{keyPath:'id'});st.createIndex('createdAt','createdAt');st.createIndex('type','type')}};r.onsuccess=e=>resolve(e.target.result);r.onerror=e=>reject(e.target.error)})}
+function auditFilesStore(mode='readonly'){return auditFilesOpenDB().then(db=>db.transaction('files',mode).objectStore('files'))}
+function auditFilesAll(){return auditFilesStore().then(st=>new Promise((res,rej)=>{const r=st.getAll();r.onsuccess=()=>res(r.result||[]);r.onerror=()=>rej(r.error)}))}
+function auditFilesPut(o){return auditFilesStore('readwrite').then(st=>new Promise((res,rej)=>{const r=st.put(o);r.onsuccess=res;r.onerror=()=>rej(r.error)}))}
+function auditFilesDelete(id){return auditFilesStore('readwrite').then(st=>new Promise((res,rej)=>{const r=st.delete(id);r.onsuccess=res;r.onerror=()=>rej(r.error)}))}
+function auditFileType(n){let e=(n.split('.').pop()||'').toLowerCase();if(['doc','docx'].includes(e))return'word';if(['xls','xlsx','xlsm','csv'].includes(e))return'excel';if(e==='pdf')return'pdf';if(['ppt','pptx'].includes(e))return'powerpoint';if(['jpg','jpeg','png','gif','webp','bmp','svg'].includes(e))return'image';return'other'}
+function auditFileIcon(t){return({word:'📝',excel:'📊',pdf:'📕',powerpoint:'📽️',image:'🖼️',other:'📎'})[t]||'📎'}
+function auditFileLabel(t){return({word:'Word',excel:'Excel',pdf:'PDF',powerpoint:'PowerPoint',image:'تصویر',other:'فایل'})[t]||'فایل'}
+function auditFileSize(n){if(n<1024)return n+' B';if(n<1048576)return(n/1024).toFixed(1)+' KB';if(n<1073741824)return(n/1048576).toFixed(1)+' MB';return(n/1073741824).toFixed(2)+' GB'}
+function auditFileDate(v){try{return new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(v))}catch(e){return'-'}}
+function auditFilesPick(){document.getElementById('auditFilesInput').click()}
+async function auditFilesHandleUpload(list){let fs=[...list||[]];if(!fs.length)return;try{for(const f of fs)await auditFilesPut({id:crypto.randomUUID?crypto.randomUUID():uid(),name:f.name,type:auditFileType(f.name),mime:f.type||'application/octet-stream',size:f.size,createdAt:Date.now(),updatedAt:Date.now(),blob:f});document.getElementById('auditFilesInput').value='';await auditFilesRefresh()}catch(e){alert('ذخیره فایل انجام نشد؛ ممکن است فضای ذخیره‌سازی مرورگر کافی نباشد.');console.error(e)}}
+async function auditFilesRefresh(){try{auditFilesCache=await auditFilesAll();auditFilesCache.sort((a,b)=>b.createdAt-a.createdAt);auditFilesRender()}catch(e){let g=document.getElementById('auditFilesGrid');if(g)g.innerHTML='<div class="empty" style="grid-column:1/-1">امکان دسترسی به ذخیره‌سازی فایل‌ها وجود ندارد.</div>'}}
+function auditFilesRender(){let g=document.getElementById('auditFilesGrid');if(!g)return;auditFilesObjectUrls.forEach(u=>URL.revokeObjectURL(u));auditFilesObjectUrls=[];let q=(document.getElementById('auditFilesSearch')?.value||'').toLowerCase().trim(),f=document.getElementById('auditFilesFilter')?.value||'',list=auditFilesCache.filter(x=>(!q||x.name.toLowerCase().includes(q))&&(!f||x.type===f)),c={word:0,excel:0,pdf:0,powerpoint:0,image:0,other:0};auditFilesCache.forEach(x=>c[x.type]=(c[x.type]||0)+1);document.getElementById('auditFilesStats').innerHTML=`<span class="auditFilesStat">📁 کل: <b>${auditFilesCache.length}</b></span><span class="auditFilesStat">📝 Word: <b>${c.word}</b></span><span class="auditFilesStat">📊 Excel: <b>${c.excel}</b></span><span class="auditFilesStat">📕 PDF: <b>${c.pdf}</b></span><span class="auditFilesStat">📽️ PowerPoint: <b>${c.powerpoint}</b></span>`;if(!list.length){g.innerHTML='<div class="empty" style="grid-column:1/-1;padding:55px">📂 هنوز فایلی بارگذاری نشده است.</div>';return}g.innerHTML=list.map(x=>{let u=x.blob?URL.createObjectURL(x.blob):'',ic=x.type==='image'&&u?`<img src="${u}" alt="${esc(x.name)}">`:auditFileIcon(x.type);if(u)auditFilesObjectUrls.push(u);return`<div class="auditFileCard"><div class="auditFileIcon">${ic}</div><div class="auditFileName" id="auditName_${x.id}">${esc(x.name)}</div><input class="auditFileNameInput" id="auditEdit_${x.id}" value="${esc(x.name)}" onkeydown="if(event.key==='Enter')auditFilesSaveName('${x.id}')"><div class="auditFileMeta">${auditFileLabel(x.type)} • ${auditFileSize(x.size)}<br>بارگذاری: ${auditFileDate(x.createdAt)}</div><div class="auditFileActions"><button class="btn primary" onclick="auditFilesPreview('${x.id}')">👁️ Preview</button><button class="btn" onclick="auditFilesDownload('${x.id}')">⬇️ دانلود</button><button class="btn" onclick="auditFilesEditName('${x.id}')">✏️ تغییر نام</button><button class="btn danger" onclick="auditFilesRemove('${x.id}')">🗑️ حذف</button></div></div>`}).join('')}
+async function auditFilesGet(id){return(await auditFilesAll()).find(x=>x.id===id)}
+async function auditFilesDownload(id){let x=await auditFilesGet(id);if(!x)return;let u=URL.createObjectURL(x.blob),a=document.createElement('a');a.href=u;a.download=x.name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+function auditFilesEditName(id){let a=document.getElementById('auditName_'+id),b=document.getElementById('auditEdit_'+id);if(a&&b){a.style.display='none';b.style.display='block';b.focus();b.select()}}
+async function auditFilesSaveName(id){let x=await auditFilesGet(id),i=document.getElementById('auditEdit_'+id);if(!x||!i)return;let n=i.value.trim();if(!n)return alert('نام فایل نمی‌تواند خالی باشد.');let ext=(x.name.match(/\.[^.]+$/)||[''])[0];if(!/\.[a-z0-9]{1,8}$/i.test(n)&&ext)n+=ext;x.name=n;x.type=auditFileType(n);x.updatedAt=Date.now();await auditFilesPut(x);auditFilesRefresh()}
+async function auditFilesRemove(id){let x=await auditFilesGet(id);if(x&&confirm('فایل «'+x.name+'» حذف شود؟')){await auditFilesDelete(id);auditFilesRefresh()}}
+async function auditFilesPreview(id){let x=await auditFilesGet(id);if(!x)return;let m=document.getElementById('auditPreviewModal'),b=document.getElementById('auditPreviewBody');document.getElementById('auditPreviewTitle').textContent='پیش‌نمایش: '+x.name;b.innerHTML='';let u=URL.createObjectURL(x.blob);m.dataset.url=u;if(x.type==='image')b.innerHTML=`<img src="${u}" alt="${esc(x.name)}">`;else if(x.type==='pdf')b.innerHTML=`<iframe src="${u}#toolbar=1&navpanes=0"></iframe>`;else if(x.type==='excel'){b.innerHTML='<div class="auditPreviewInfo">⏳ در حال آماده‌سازی پیش‌نمایش Excel...</div>';try{if(!window.XLSX)await new Promise((res,rej)=>{let sc=document.createElement('script');sc.src='https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js';sc.onload=res;sc.onerror=rej;document.head.appendChild(sc)});let wb=XLSX.read(await x.blob.arrayBuffer(),{type:'array'}),html=XLSX.utils.sheet_to_html(wb.Sheets[wb.SheetNames[0]]);b.innerHTML=`<div class="auditPreviewSheet">${html}</div>`}catch(e){b.innerHTML='<div class="auditPreviewInfo">پیش‌نمایش Excel آماده نشد؛ فایل را دانلود کنید.</div>'}}else if(x.type==='word'){b.innerHTML='<div class="auditPreviewInfo">⏳ در حال آماده‌سازی پیش‌نمایش Word...</div>';try{if(!window.mammoth)await new Promise((res,rej)=>{let sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js';sc.onload=res;sc.onerror=rej;document.head.appendChild(sc)});let r=await mammoth.convertToHtml({arrayBuffer:await x.blob.arrayBuffer()});b.innerHTML=`<div class="auditPreviewSheet" style="line-height:2">${r.value||'متن قابل نمایش پیدا نشد.'}</div>`}catch(e){b.innerHTML='<div class="auditPreviewInfo">پیش‌نمایش Word آماده نشد؛ فایل را دانلود کنید.</div>'}}else b.innerHTML=`<div class="auditPreviewInfo"><div style="font-size:70px">${auditFileIcon(x.type)}</div><b>${esc(x.name)}</b><br>پیش‌نمایش مستقیم این نوع فایل در مرورگر ممکن نیست.<br><button class="btn primary" style="margin-top:12px" onclick="auditFilesDownload('${x.id}')">⬇️ دانلود فایل</button></div>`;m.classList.add('show')}
+function auditFilesClosePreview(){let m=document.getElementById('auditPreviewModal');if(m.dataset.url)URL.revokeObjectURL(m.dataset.url);m.dataset.url='';m.classList.remove('show');document.getElementById('auditPreviewBody').innerHTML=''}
+document.addEventListener('DOMContentLoaded',()=>{auditFilesRefresh();let p=document.querySelector('.auditFilesPanel');if(p)p.addEventListener('dragover',e=>e.preventDefault());if(p)p.addEventListener('drop',e=>{e.preventDefault();auditFilesHandleUpload(e.dataTransfer.files)})});
+</script>
+
+<script id="audit-theme-customizer-js">
+(function(){
+const presets={classic:{primary:'#2563eb',header:'#172554',bg:'#f3f6fa',panel:'#ffffff'},emerald:{primary:'#16805d',header:'#123b32',bg:'#eef7f2',panel:'#ffffff'},burgundy:{primary:'#a83250',header:'#4a1727',bg:'#faf1f3',panel:'#ffffff'},graphite:{primary:'#526174',header:'#202a36',bg:'#eef1f4',panel:'#ffffff'},teal:{primary:'#0f8b8d',header:'#123b46',bg:'#edf8f8',panel:'#ffffff'},violet:{primary:'#7654c8',header:'#30234f',bg:'#f4f1fb',panel:'#ffffff'}};
+const ids={primary:'auditPrimary',header:'auditHeader',bg:'auditBackground',panel:'auditPanel'};
+function applyVars(v){let r=document.documentElement.style;r.setProperty('--audit-primary',v.primary);r.setProperty('--audit-header',v.header);r.setProperty('--audit-bg',v.bg);r.setProperty('--audit-panel',v.panel);}
+function readCustom(){return {primary:document.getElementById(ids.primary).value,header:document.getElementById(ids.header).value,bg:document.getElementById(ids.bg).value,panel:document.getElementById(ids.panel).value}}
+function updateStyle(){document.body.classList.remove('audit-glass','audit-soft','audit-compact');let s=document.getElementById('auditShape')?.value;if(s==='glass')document.body.classList.add('audit-glass');if(s==='soft')document.body.classList.add('audit-soft');if(s==='compact')document.body.classList.add('audit-compact')}
+window.applyAuditTheme=function(saveNow){let name=document.getElementById('auditTheme').value;let v=name==='custom'?readCustom():(presets[name]||presets.classic);Object.entries(ids).forEach(([k,id])=>document.getElementById(id).value=v[k]);applyVars(v);updateStyle();if(saveNow)window.saveAuditTheme()};
+window.setCustomTheme=function(){document.getElementById('auditTheme').value='custom';applyVars(readCustom());updateStyle()};
+window.saveAuditTheme=function(){let name=document.getElementById('auditTheme').value;let v=name==='custom'?readCustom():(presets[name]||presets.classic);let data={name,colors:v,shape:document.getElementById('auditShape').value};localStorage.setItem('audit_visual_theme_v1',JSON.stringify(data));applyVars(v);updateStyle();let m=document.getElementById('themeSavedMsg');if(m)m.textContent='ظاهر داشبورد ذخیره شد ✓'};
+window.resetAuditTheme=function(){localStorage.removeItem('audit_visual_theme_v1');document.getElementById('auditTheme').value='classic';document.getElementById('auditShape').value='standard';window.applyAuditTheme(false);let m=document.getElementById('themeSavedMsg');if(m)m.textContent='تم پیش‌فرض فعال شد'};
+function init(){let d;try{d=JSON.parse(localStorage.getItem('audit_visual_theme_v1')||'null')}catch(e){}if(d){document.getElementById('auditTheme').value=d.name||'classic';document.getElementById('auditShape').value=d.shape||'standard';let v=d.colors||presets.classic;Object.entries(ids).forEach(([k,id])=>document.getElementById(id).value=v[k]||presets.classic[k]);applyVars(v);updateStyle()}else window.applyAuditTheme(false)}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+
+<style id="audit-fix-pack">
+/* خوانایی پایدار در ویندوز و هر دو حالت رنگ */
+body{background-color:var(--audit-bg,#f3f6fa)!important;color:var(--audit-text,#172033)}
+body:not(.darkMode) .panel,body:not(.darkMode) .card,body:not(.darkMode) .toolCard,body:not(.darkMode) .noteCard,body:not(.darkMode) .auditFileCard,body:not(.darkMode) .appearancePanel{background-color:var(--audit-panel,#fff)!important;color:#172033}
+body.darkMode{--audit-bg:#0b1220;--audit-panel:#182235;--audit-text:#f3f6fc;background:#0b1220!important;color:#f3f6fc!important}
+body.darkMode .panel,body.darkMode .card,body.darkMode .toolCard,body.darkMode .noteCard,body.darkMode .auditFileCard,body.darkMode .appearancePanel,body.darkMode .box,body.darkMode .drawer{background:#182235!important;color:#f3f6fc!important;border-color:#39465b!important}
+body.darkMode p,body.darkMode label,body.darkMode span,body.darkMode h1,body.darkMode h2,body.darkMode h3,body.darkMode h4,body.darkMode td,body.darkMode th,body.darkMode .auditFileName,body.darkMode .noteBody{color:inherit}
+body.darkMode .muted,body.darkMode .auditFileMeta,body.darkMode .auditDocFiles{color:#c0ccdc!important}
+body.darkMode input,body.darkMode textarea,body.darkMode select,body.darkMode .editor{background:#0b1220!important;color:#f3f6fc!important;border-color:#526078!important}
+body.darkMode button:not(.primary):not(.danger):not(.success):not(.warn){background:#27354b;color:#f3f6fc;border-color:#526078}
+body.darkMode th{background:#27354b!important;color:#f3f6fc!important}
+body.darkMode .auditFilesDrop,body.darkMode .auditDocBox,body.darkMode .auditFileIcon,body.darkMode .auditFilesStat{background:#202d42!important;color:#f3f6fc!important;border-color:#526078}
+.auditFolderToolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.auditBreadcrumb{padding:10px 12px;border-radius:10px;background:#eef4ff;color:#173a75;font-weight:600;flex:1;min-width:220px}
+body.darkMode .auditBreadcrumb{background:#27354b;color:#e8f1ff}
+.auditFolderCard{border:1px solid #c8d7ef;background:#f4f8ff;border-radius:14px;padding:15px;display:flex;flex-direction:column;gap:8px;cursor:pointer;min-height:145px}
+.auditFolderCard strong{overflow-wrap:anywhere}.auditFolderActions{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+body.darkMode .auditFolderCard{background:#202d42;border-color:#526078}
+@media print{body.print-current main>section{display:none!important}body.print-current main>section.print-target{display:block!important}body.print-current main>section.print-target [hidden]{display:block!important}body.print-current .auditFilesActions,body.print-current .auditFolderToolbar,body.print-current .auditFilesDrop,body.print-current .toolbar,body.print-current .actions{display:none!important}}
+</style>
+<script id="audit-fixes-v2">
+(function(){
+/* Windows CSS customizer: apply colors directly and reliably; dark mode gets its own readable palette */
+const originalApply=window.applyAuditTheme, originalSet=window.setCustomTheme;
+function applyThemeVars(v){
+ const root=document.documentElement.style, body=document.body;
+ root.setProperty('--audit-primary',v.primary);root.setProperty('--audit-header',v.header);
+ root.setProperty('--audit-bg',v.bg);root.setProperty('--audit-panel',v.panel);
+ body.style.backgroundColor=v.bg;
+ document.querySelectorAll('.panel,.card,.toolCard,.noteCard,.auditFileCard,.appearancePanel').forEach(el=>{
+   if(!body.classList.contains('darkMode')) el.style.backgroundColor=v.panel;
+ });
+}
+window.applyAuditTheme=function(saveNow){
+ if(originalApply) originalApply(false);
+ const name=document.getElementById('auditTheme')?.value||'classic';
+ const v={primary:document.getElementById('auditPrimary').value,header:document.getElementById('auditHeader').value,bg:document.getElementById('auditBackground').value,panel:document.getElementById('auditPanel').value};
+ applyThemeVars(v);if(saveNow)window.saveAuditTheme?.();
+};
+window.setCustomTheme=function(){document.getElementById('auditTheme').value='custom';let v={primary:auditPrimary.value,header:auditHeader.value,bg:auditBackground.value,panel:auditPanel.value};applyThemeVars(v)};
+const oldSave=window.saveAuditTheme;
+window.saveAuditTheme=function(){const v={primary:auditPrimary.value,header:auditHeader.value,bg:auditBackground.value,panel:auditPanel.value};localStorage.setItem('audit_visual_theme_v1',JSON.stringify({name:auditTheme.value,colors:v,shape:auditShape.value}));applyThemeVars(v);const m=document.getElementById('themeSavedMsg');if(m)m.textContent='ظاهر داشبورد ذخیره شد ✓'};
+/* Folder hierarchy for audit working papers */
+let currentFolder=null;
+function folderControls(){
+ const panel=document.querySelector('#auditFiles .auditFilesPanel');if(!panel||document.getElementById('auditFolderToolbar'))return;
+ const bar=document.createElement('div');bar.id='auditFolderToolbar';bar.className='auditFolderToolbar';
+ bar.innerHTML='<button class="btn primary" type="button" id="auditCreateFolder">📁 پوشه جدید</button><button class="btn" type="button" id="auditGoRoot">🏠 پوشه اصلی</button><div id="auditBreadcrumb" class="auditBreadcrumb">پوشه اصلی</div>';
+ const drop=panel.querySelector('.auditFilesDrop');panel.insertBefore(bar,drop);
+ document.getElementById('auditCreateFolder').onclick=async()=>{let name=prompt('نام پوشه جدید را وارد کنید:');if(!name||!name.trim())return;await auditFilesPut({id:'folder_'+(crypto.randomUUID?crypto.randomUUID():Date.now()+Math.random()),name:name.trim(),isFolder:true,parentId:currentFolder,createdAt:Date.now(),updatedAt:Date.now(),size:0,type:'folder'});await auditFilesRefresh()};
+ document.getElementById('auditGoRoot').onclick=()=>{currentFolder=null;auditFilesRender()};
+}
+function folderPath(id){let out=[],guard=0;while(id&&guard++<100){let f=auditFilesCache.find(x=>x.id===id&&x.isFolder);if(!f)break;out.unshift(f);id=f.parentId||null}return out}
+window.auditOpenFolder=function(id){currentFolder=id;auditFilesRender()};
+window.auditFolderDelete=async function(id){let child=auditFilesCache.some(x=>x.parentId===id);if(child){alert('این پوشه خالی نیست؛ ابتدا فایل‌ها و زیرپوشه‌های آن را حذف یا منتقل کنید.');return}let f=auditFilesCache.find(x=>x.id===id);if(f&&confirm('پوشه «'+f.name+'» حذف شود؟')){await auditFilesDelete(id);auditFilesRefresh()}};
+window.auditFolderRename=async function(id){let f=await auditFilesGet(id);if(!f)return;let n=prompt('نام جدید پوشه:',f.name);if(!n||!n.trim())return;f.name=n.trim();f.updatedAt=Date.now();await auditFilesPut(f);auditFilesRefresh()};
+const oldUpload=window.auditFilesHandleUpload;
+window.auditFilesHandleUpload=async function(list){let fs=[...(list||[])];if(!fs.length)return;try{for(const f of fs)await auditFilesPut({id:crypto.randomUUID?crypto.randomUUID():uid(),name:f.name,type:auditFileType(f.name),mime:f.type||'application/octet-stream',size:f.size,createdAt:Date.now(),updatedAt:Date.now(),blob:f,parentId:currentFolder});document.getElementById('auditFilesInput').value='';await auditFilesRefresh()}catch(e){alert('ذخیره فایل انجام نشد؛ ممکن است فضای ذخیره‌سازی مرورگر کافی نباشد.')}};
+window.auditFilesRender=function(){
+ const g=document.getElementById('auditFilesGrid');if(!g)return;
+ (auditFilesObjectUrls||[]).forEach(u=>URL.revokeObjectURL(u));auditFilesObjectUrls=[];
+ const q=(document.getElementById('auditFilesSearch')?.value||'').toLowerCase().trim(),f=document.getElementById('auditFilesFilter')?.value||'';
+ const path=folderPath(currentFolder),crumb=document.getElementById('auditBreadcrumb');
+ if(crumb)crumb.innerHTML='<span style="cursor:pointer" onclick="auditOpenFolder(null)">🏠 پوشه اصلی</span>'+path.map(x=>'　›　<span style="cursor:pointer" onclick="auditOpenFolder(\''+x.id+'\')">'+String(x.name).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))+'</span>').join('');
+ const children=auditFilesCache.filter(x=>(x.parentId||null)===currentFolder);
+ const folders=children.filter(x=>x.isFolder&&(!q||x.name.toLowerCase().includes(q)));
+ const files=children.filter(x=>!x.isFolder&&(!q||x.name.toLowerCase().includes(q))&&(!f||x.type===f));
+ const c={word:0,excel:0,pdf:0,powerpoint:0,image:0,other:0};auditFilesCache.filter(x=>!x.isFolder).forEach(x=>c[x.type]=(c[x.type]||0)+1);
+ const stats=document.getElementById('auditFilesStats');if(stats)stats.innerHTML='<span class="auditFilesStat">📁 کل فایل‌ها: <b>'+auditFilesCache.filter(x=>!x.isFolder).length+'</b></span><span class="auditFilesStat">🗂️ پوشه‌ها: <b>'+auditFilesCache.filter(x=>x.isFolder).length+'</b></span><span class="auditFilesStat">📕 PDF: <b>'+c.pdf+'</b></span>';
+ let html=folders.map(x=>'<div class="auditFolderCard"><div style="font-size:42px">📁</div><strong>'+String(x.name).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))+'</strong><div class="muted">پوشه تو در تو</div><div class="auditFolderActions"><button class="btn primary" onclick="auditOpenFolder(\''+x.id+'\')">بازکردن</button><button class="btn" onclick="auditFolderRename(\''+x.id+'\')">تغییر نام</button><button class="btn danger" onclick="auditFolderDelete(\''+x.id+'\')">حذف</button></div></div>').join('');
+ html+=files.map(x=>{let u=x.blob?URL.createObjectURL(x.blob):'',ic=x.type==='image'&&u?'<img src="'+u+'" alt="">':auditFileIcon(x.type);if(u)auditFilesObjectUrls.push(u);return `<div class="auditFileCard"><div class="auditFileIcon">${ic}</div><div class="auditFileName" id="auditName_${x.id}">${String(x.name).replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}</div><input class="auditFileNameInput" id="auditEdit_${x.id}" value="${String(x.name).replace(/"/g,'&quot;')}" onkeydown="if(event.key==='Enter')auditFilesSaveName('${x.id}')"><div class="auditFileMeta">${auditFileLabel(x.type)} • ${auditFileSize(x.size)}<br>بارگذاری: ${auditFileDate(x.createdAt)}</div><div class="auditFileActions"><button class="btn primary" onclick="auditFilesPreview('${x.id}')">👁️ پیش‌نمایش</button><button class="btn" onclick="auditFilesDownload('${x.id}')">⬇️ دانلود</button><button class="btn" onclick="auditFilesEditName('${x.id}')">✏️ تغییر نام</button><button class="btn danger" onclick="auditFilesRemove('${x.id}')">🗑️ حذف</button></div></div>`}).join('');
+ g.innerHTML=html||'<div class="empty" style="grid-column:1/-1;padding:45px">این پوشه خالی است؛ پوشه بسازید یا فایل آپلود کنید.</div>';
+};
+const oldRefresh=window.auditFilesRefresh;
+window.auditFilesRefresh=async function(){await oldRefresh();folderControls();window.auditFilesRender()};
+document.addEventListener('DOMContentLoaded',()=>{folderControls();if(window.auditFilesRefresh)window.auditFilesRefresh();});
+/* PDF/print: print the selected menu section only; inject an export button in every main section */
+window.auditPrintCurrent=function(id){document.querySelectorAll('main>section').forEach(x=>x.classList.remove('print-target'));let el=document.getElementById(id);if(!el)return;el.classList.add('print-target');document.body.classList.add('print-current');window.print();setTimeout(()=>{document.body.classList.remove('print-current');el.classList.remove('print-target')},700)};
+function addPdfButtons(){document.querySelectorAll('main>section').forEach(sec=>{if(sec.id==='recoveryPanel'||sec.querySelector('.auditPdfBtn'))return;let panel=sec.querySelector('.panel');if(!panel)return;let b=document.createElement('button');b.className='btn auditPdfBtn';b.type='button';b.textContent='📄 خروجی PDF این بخش';b.onclick=()=>auditPrintCurrent(sec.id);let target=panel.querySelector('.toolbar,.auditFilesHeader,.auditDocActions,.auditSuiteActions');if(target)target.appendChild(b);else{b.style.marginBottom='10px';panel.insertBefore(b,panel.firstChild)}})}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(addPdfButtons,150));
+})();
+</script>
+
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+(()=>{
+'use strict';
+const CLIENT_ID='340411388454-ent3sf1pulhi4p16vrkbu7a8s4d74kta.apps.googleusercontent.com';
+const FOLDER_ID='1T_3ZCdBqXprIc57YTDR9P2eK1Gfp82wm';
+const SCOPE='https://www.googleapis.com/auth/drive';
+let tokenClient=null,accessToken=null,driveFiles=[];
+const $=id=>document.getElementById(id);
+function status(msg,isError=false){const el=$('driveStatus');if(el){el.textContent=msg;el.style.color=isError?'#b42318':''}}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function readyGIS(){return new Promise((resolve,reject)=>{let tries=0;const t=setInterval(()=>{tries++;if(window.google?.accounts?.oauth2){clearInterval(t);resolve()}else if(tries>60){clearInterval(t);reject(new Error('کتابخانه ورود گوگل بارگذاری نشد؛ اتصال اینترنت یا دسترسی به Google را بررسی کنید.'))}},200)})}
+async function auth(){if(accessToken)return accessToken;await readyGIS();return new Promise((resolve,reject)=>{tokenClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:SCOPE,include_granted_scopes:true,callback:r=>{if(r?.access_token){accessToken=r.access_token;resolve(accessToken)}else reject(new Error(r?.error_description||r?.error||'ورود به گوگل انجام نشد.'))}});tokenClient.requestAccessToken({prompt:'consent'})})}
+async function api(url,options={}){if(!accessToken)throw new Error('ابتدا به گوگل متصل شوید.');const headers=new Headers(options.headers||{});headers.set('Authorization','Bearer '+accessToken);const r=await fetch(url,{...options,headers});if(r.status===401){accessToken=null;throw new Error('نشست گوگل منقضی شده است؛ دوباره متصل شوید.')}if(!r.ok){let msg='';try{msg=(await r.json()).error?.message||''}catch{}throw new Error(msg||('خطای Google Drive: '+r.status))}if(r.status===204)return null;return r.json()}
+async function listFiles(){status('در حال دریافت فهرست پوشه مشترک…');const q=encodeURIComponent("'"+FOLDER_ID+"' in parents and trashed = false");const data=await api('https://www.googleapis.com/drive/v3/files?q='+q+'&pageSize=1000&orderBy=name&fields=files(id,name,mimeType,size,modifiedTime,webViewLink,parents)',{});driveFiles=data.files||[];render();status('اتصال برقرار است. '+driveFiles.length+' مورد در پوشه مشترک پیدا شد.');$('driveRefreshBtn').disabled=false;$('driveUploadRow').style.display='flex'}
+function render(){const host=$('driveList');if(!host)return;if(!driveFiles.length){host.innerHTML='<div class="muted" style="padding:14px">این پوشه در حال حاضر خالی است یا فایل قابل‌نمایشی ندارد.</div>';return}host.innerHTML=driveFiles.map(f=>`<div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid #e5e7eb;border-radius:10px;padding:10px"><div style="min-width:150px;flex:1;overflow-wrap:anywhere"><strong>${escapeHtml(f.name)}</strong><div class="muted" style="font-size:11px">${f.mimeType==='application/vnd.google-apps.folder'?'پوشه':(f.size?Math.round(Number(f.size)/1024)+' KB':'فایل گوگل')} ${f.modifiedTime?' • '+new Date(f.modifiedTime).toLocaleDateString('fa-IR'):''}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap">${f.mimeType==='application/vnd.google-apps.folder'?`<button class="btn" data-open="${f.id}">بازکردن در Drive</button>`:`<button class="btn primary" data-download="${f.id}">دانلود</button>`}<button class="btn" data-rename="${f.id}">تغییر نام</button><button class="btn danger" data-delete="${f.id}">حذف</button></div></div>`).join('');host.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>window.open('https://drive.google.com/drive/folders/'+encodeURIComponent(b.dataset.open),'_blank','noopener'));host.querySelectorAll('[data-download]').forEach(b=>b.onclick=()=>downloadFile(b.dataset.download));host.querySelectorAll('[data-rename]').forEach(b=>b.onclick=()=>renameFile(b.dataset.rename));host.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>deleteFile(b.dataset.delete))}
+async function downloadFile(id){try{status('در حال آماده‌سازی دانلود…');const f=driveFiles.find(x=>x.id===id);if(!f)return;if(f.mimeType?.startsWith('application/vnd.google-apps.')){window.open(f.webViewLink||('https://drive.google.com/open?id='+id),'_blank','noopener');return}const r=await fetch('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(id)+'?alt=media',{headers:{Authorization:'Bearer '+accessToken}});if(!r.ok)throw new Error('دانلود انجام نشد: '+r.status);const blob=await r.blob(),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=f.name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);status('دانلود شروع شد.')}catch(e){status(e.message,true)}}
+async function renameFile(id){const f=driveFiles.find(x=>x.id===id);if(!f)return;const name=prompt('نام جدید فایل:',f.name);if(!name||!name.trim()||name.trim()===f.name)return;try{await api('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(id),{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name.trim()})});await listFiles()}catch(e){status(e.message,true)}}
+async function deleteFile(id){const f=driveFiles.find(x=>x.id===id);if(!f||!confirm('«'+f.name+'» از Google Drive حذف شود؟'))return;try{await api('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(id),{method:'DELETE'});await listFiles()}catch(e){status(e.message,true)}}
+async function uploadFiles(){const files=[...($('driveUploadInput').files||[])];if(!files.length){status('ابتدا فایل را انتخاب کنید.',true);return}const btn=$('driveUploadBtn');btn.disabled=true;try{for(const file of files){status('در حال آپلود: '+file.name);const meta={name:file.name,parents:[FOLDER_ID]};const boundary='audit_drive_'+Math.random().toString(36).slice(2);const body=new Blob(['--'+boundary+'\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+JSON.stringify(meta)+'\r\n--'+boundary+'\r\nContent-Type: '+(file.type||'application/octet-stream')+'\r\n\r\n',file,'\r\n--'+boundary+'--'],{type:'multipart/related; boundary='+boundary});await api('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,mimeType,size,modifiedTime,webViewLink,parents',{method:'POST',headers:{'Content-Type':'multipart/related; boundary='+boundary},body})}$('driveUploadInput').value='';await listFiles();status('آپلود فایل‌ها با موفقیت انجام شد.')}catch(e){status(e.message,true)}finally{btn.disabled=false}}
+$('driveConnectBtn')?.addEventListener('click',async()=>{const b=$('driveConnectBtn');b.disabled=true;try{await auth();b.textContent='متصل شد ✓';await listFiles()}catch(e){status(e.message,true);accessToken=null}finally{b.disabled=false}});
+$('driveRefreshBtn')?.addEventListener('click',async()=>{try{await listFiles()}catch(e){status(e.message,true)}});
+$('driveUploadBtn')?.addEventListener('click',uploadFiles);
+})();
+</script>
+
+</body></html>
